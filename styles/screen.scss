@@ -1,0 +1,20 @@
+@import 'sass/reset.scss';
+@import 'sass/html5.scss';
+
+body {
+    @include reset-spacing;
+
+    background: white;
+    font-family: Arial;
+    font-size: 12px;
+    line-height: 19px;
+    color: #000000;
+}
+
+div.shape {
+    position: absolute;
+
+    div.block {
+        position: absolute;
+    }
+}
