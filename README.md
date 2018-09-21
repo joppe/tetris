@@ -8,8 +8,9 @@
 - ~~create tetrominoes~~
 - ~~move tetromino~~
 - ~~random tetromino~~
-- create layout
+- ~~create layout~~
 - game engine
+    - show next
     - tick/fall active tetromino
     - collision detection
     - next tetromino

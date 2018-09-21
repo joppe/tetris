@@ -39,12 +39,12 @@ export class HTMLRenderer implements IRenderer {
     private renderShape(shape: IRenderable): HTMLDivElement {
         const el: HTMLDivElement = document.createElement('div');
 
-        el.style.position = 'absolute';
+        el.classList.add('tetromino');
+
         el.style.left = `${shape.position.x}px`;
         el.style.top = `${shape.position.y}px`;
         el.style.width = `${shape.size.width * this._config.tetrominoSize.width}px`;
         el.style.height = `${shape.size.height * this._config.tetrominoSize.height}px`;
-        el.style.border = '1px solid black';
 
         shape.shape.forEach((v: geometry.vector.Vector): void => {
             el.appendChild(
@@ -68,13 +68,13 @@ export class HTMLRenderer implements IRenderer {
         const x: number = (vector.x - 0.5) * size.width;
         const y: number = (vector.y - 0.5) * size.height;
 
-        el.style.position = 'absolute';
+        el.classList.add('tetromino__part');
+
         el.style.backgroundColor = color;
         el.style.left = `${x}px`;
         el.style.top = `${y}px`;
         el.style.width = `${size.width}px`;
         el.style.height = `${size.height}px`;
-        el.style.boxShadow = 'inset 0px 0px 1px 0px rgba(0,0,0,0.75)';
 
         return el;
     }

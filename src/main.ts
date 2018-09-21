@@ -1,63 +1,17 @@
-import * as geometry from '@apestaartje/geometry';
+import { Tetris } from 'app/tetris/Tetris';
 
-import { keyboard } from 'app/tetris/control/keyboard';
-import { HTMLRenderer } from 'app/tetris/render/HTMLRenderer';
-import { random } from 'app/tetris/tetromino/random';
-import { Tetromino } from 'app/tetris/tetromino/Tetromino';
-
-const tetrominoSize: geometry.size.Size = {
-    height: 20,
-    width: 20
-};
-
-const t: Tetromino = random({
-    x: 100,
-    y: 0
+const game: Tetris = new Tetris({
+    size: {
+        width: 20,
+        height: 30
+    },
+    tetrominoSize: {
+        width: 20,
+        height: 20
+    },
+    wellElement: document.querySelector('.js-tetris--well'),
+    scoreElement: document.querySelector('.js-tetris--score'),
+    nextElement: document.querySelector('.js-tetris--next')
 });
 
-const renderer: HTMLRenderer = new HTMLRenderer(
-    {
-        tetrominoSize
-    },
-    document.querySelector('.js-tetris')
-);
-
-renderer.register(t);
-renderer.render();
-
-keyboard({
-    left(): void {
-        window.console.log('left');
-
-        t.move({
-            x: -tetrominoSize.width,
-            y: 0
-        });
-
-        renderer.render();
-    },
-    right(): void {
-        window.console.log('right');
-
-        t.move({
-            x: tetrominoSize.width,
-            y: 0
-        });
-
-        renderer.render();
-    },
-    counterClockwise(): void {
-        window.console.log('counterClockwise');
-
-        t.rotate(-90);
-
-        renderer.render();
-    },
-    clockwise(): void {
-        window.console.log('clockwise');
-
-        t.rotate(90);
-
-        renderer.render();
-    }
-});
+game.start();
