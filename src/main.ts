@@ -1,4 +1,5 @@
 import { HTMLRenderer } from 'app/tetris/render/HTMLRenderer';
+import { factory } from 'app/tetris/tetromino/factory';
 import { Tetromino } from 'app/tetris/tetromino/Tetromino';
 
 const PINK: string = '#ff44ff';
@@ -8,27 +9,17 @@ const BLUE: string = '#44ffff';
 const YELLOW: string = '#ffff44';
 
 /**
- * L straight
+ * I straight
  * O square
  * T
  * L
  * S
  */
 
-const t: Tetromino = new Tetromino(
-    {
-        x: 100,
-        y: 0
-    },
-    {
-        color: PINK,
-        shape: [
-            [false, false, false],
-            [true, true, true],
-            [false, true, false]
-        ]
-    }
-);
+const t: Tetromino = factory('J', {
+    x: 100,
+    y: 0
+});
 
 const renderer: HTMLRenderer = new HTMLRenderer(
     {

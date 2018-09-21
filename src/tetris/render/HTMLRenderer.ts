@@ -61,6 +61,10 @@ export class HTMLRenderer implements IRenderer {
 
     private createBox(vector: geometry.vector.Vector, size: geometry.size.Size, color: string): HTMLDivElement {
         const el: HTMLDivElement = document.createElement('div');
+
+        /**
+         * The vector is always pointing to the center of the box, therefore it must be subtracted with 0.5
+         */
         const x: number = (vector.x - 0.5) * size.width;
         const y: number = (vector.y - 0.5) * size.height;
 
@@ -70,6 +74,7 @@ export class HTMLRenderer implements IRenderer {
         el.style.top = `${y}px`;
         el.style.width = `${size.width}px`;
         el.style.height = `${size.height}px`;
+        el.style.boxShadow = 'inset 0px 0px 1px 0px rgba(0,0,0,0.75)';
 
         return el;
     }
