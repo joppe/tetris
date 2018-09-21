@@ -1,5 +1,5 @@
-import { Size } from 'app/tetris/geometry/Size';
+import * as geometry from '@apestaartje/geometry';
 
 export type Config = {
-    tetrominoSize: Size;
+    tetrominoSize: geometry.size.Size;
 };

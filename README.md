@@ -3,7 +3,7 @@
 
 ## Todo
 
-- render tetromino
+- ~~render tetromino~~
 - rotate tetromino
 - create tetrominoes
 - create layout

@@ -17,7 +17,7 @@ const YELLOW: string = '#ffff44';
 
 const t: Tetromino = new Tetromino(
     {
-        x: 0,
+        x: 100,
         y: 0
     },
     {
@@ -37,7 +37,20 @@ const renderer: HTMLRenderer = new HTMLRenderer(
             width: 20
         }
     },
-    document.querySelector('body')
+    document.querySelector('.js-tetris')
 );
 
-renderer.render(t);
+renderer.register(t);
+renderer.render();
+
+document.querySelector('.js-rotate--left').addEventListener('click', (): void => {
+    t.rotate(-90);
+
+    renderer.render();
+});
+
+document.querySelector('.js-rotate--right').addEventListener('click', (): void => {
+    t.rotate(90);
+
+    renderer.render();
+});

@@ -1,10 +1,11 @@
-import { Point } from 'app/tetris/geometry/Point';
-import { Vector } from 'app/tetris/geometry/Vector';
+import * as geometry from '@apestaartje/geometry';
 
 export interface IRenderable {
     color: string;
 
-    position: Point;
+    position: geometry.point.Point;
 
-    shape: Array<Vector>;
+    size: geometry.size.Size;
+
+    shape: Array<geometry.vector.Vector>;
 }
