@@ -7,12 +7,12 @@
 - ~~rotate tetromino~~
 - ~~create tetrominoes~~
 - ~~move tetromino~~
-- random tetromino
+- ~~random tetromino~~
 - create layout
 - game engine
-    - tick
+    - tick/fall active tetromino
+    - collision detection
     - next tetromino
-- collision detection
 - game
     - points
     - start

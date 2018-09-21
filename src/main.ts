@@ -2,7 +2,7 @@ import * as geometry from '@apestaartje/geometry';
 
 import { keyboard } from 'app/tetris/control/keyboard';
 import { HTMLRenderer } from 'app/tetris/render/HTMLRenderer';
-import { factory } from 'app/tetris/tetromino/factory';
+import { random } from 'app/tetris/tetromino/random';
 import { Tetromino } from 'app/tetris/tetromino/Tetromino';
 
 const tetrominoSize: geometry.size.Size = {
@@ -10,7 +10,7 @@ const tetrominoSize: geometry.size.Size = {
     width: 20
 };
 
-const t: Tetromino = factory('J', {
+const t: Tetromino = random({
     x: 100,
     y: 0
 });

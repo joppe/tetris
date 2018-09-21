@@ -24,6 +24,7 @@
   ],
   "devDependencies": {
     "@apestaartje/geometry": "^1.2.1",
+    "@apestaartje/number": "^1.2.0",
     "@types/jasmine": "^2.8.6",
     "autoprefixer": "^8.6.4",
     "bootstrap": "^4.1.1",

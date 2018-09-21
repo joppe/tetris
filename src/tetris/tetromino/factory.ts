@@ -1,8 +1,7 @@
 import * as geometry from '@apestaartje/geometry';
 
 import { Tetromino } from 'app/tetris/tetromino/Tetromino';
-
-type Type = 'I' | 'O' | 'T' | 'L' | 'S' | 'J' | 'Z';
+import { Type } from 'app/tetris/tetromino/Type';
 
 const BLUE: string = '#00ffff';
 const DARK_BLUE: string = '#0000ff';
