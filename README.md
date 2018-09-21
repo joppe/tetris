@@ -10,7 +10,7 @@
 - ~~random tetromino~~
 - ~~create layout~~
 - game engine
-    - show next
+    - ~~show next~~
     - tick/fall active tetromino
     - collision detection
     - next tetromino

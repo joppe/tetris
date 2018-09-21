@@ -56,6 +56,11 @@ export class Tetromino implements IRenderable {
         this._position.y += offset.y;
     }
 
+    public place(position: geometry.point.Point): void {
+        this._position.x = position.x;
+        this._position.y = position.y;
+    }
+
     public rotate(degrees: number): void {
         const transform: geometry.transform.Transform = new geometry.transform.Transform();
 

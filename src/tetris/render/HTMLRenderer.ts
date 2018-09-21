@@ -16,6 +16,10 @@ export class HTMLRenderer implements IRenderer {
         this._container = container;
     }
 
+    public reset(): void {
+        this._shapes = [];
+    }
+
     public register(renderable: IRenderable): void {
         this._shapes.push(renderable);
     }
@@ -41,6 +45,7 @@ export class HTMLRenderer implements IRenderer {
 
         el.classList.add('tetromino');
 
+        console.log(shape.position);
         el.style.left = `${shape.position.x}px`;
         el.style.top = `${shape.position.y}px`;
         el.style.width = `${shape.size.width * this._config.tetrominoSize.width}px`;

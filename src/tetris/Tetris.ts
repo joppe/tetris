@@ -14,6 +14,7 @@ export class Tetris {
     private _scoreElement: HTMLElement;
 
     private _gameRenderer: HTMLRenderer;
+    private _nextRenderer: HTMLRenderer;
     private _current: Tetromino;
     private _next: Tetromino;
 
@@ -41,6 +42,13 @@ export class Tetris {
             },
             this._wellElement
         );
+
+        this._nextRenderer = new HTMLRenderer(
+            {
+                tetrominoSize: this._tetrominoSize
+            },
+            this._nextElement
+        );
     }
 
     public start(): void {
@@ -49,13 +57,24 @@ export class Tetris {
 
     private place(): void {
         if (!this._next) {
-            this._next = random(this._center);
+            this._next = random({
+                x: 0,
+                y: 0
+            });
         }
 
         this._current = this._next;
-        this._next = random(this._center);
+        this._next = random({
+            x: 0,
+            y: 0
+        });
 
+        this._current.place(this._center);
         this._gameRenderer.register(this._current);
         this._gameRenderer.render();
+
+        this._nextRenderer.reset();
+        this._nextRenderer.register(this._next);
+        this._nextRenderer.render();
     }
 }
