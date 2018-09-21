@@ -1,20 +1,14 @@
+import * as geometry from '@apestaartje/geometry';
+
+import { keyboard } from 'app/tetris/control/keyboard';
 import { HTMLRenderer } from 'app/tetris/render/HTMLRenderer';
 import { factory } from 'app/tetris/tetromino/factory';
 import { Tetromino } from 'app/tetris/tetromino/Tetromino';
 
-const PINK: string = '#ff44ff';
-const GREEN: string = '#44ff44';
-const ORANGE: string = '#ff8800';
-const BLUE: string = '#44ffff';
-const YELLOW: string = '#ffff44';
-
-/**
- * I straight
- * O square
- * T
- * L
- * S
- */
+const tetrominoSize: geometry.size.Size = {
+    height: 20,
+    width: 20
+};
 
 const t: Tetromino = factory('J', {
     x: 100,
@@ -23,10 +17,7 @@ const t: Tetromino = factory('J', {
 
 const renderer: HTMLRenderer = new HTMLRenderer(
     {
-        tetrominoSize: {
-            height: 20,
-            width: 20
-        }
+        tetrominoSize
     },
     document.querySelector('.js-tetris')
 );
@@ -34,14 +25,39 @@ const renderer: HTMLRenderer = new HTMLRenderer(
 renderer.register(t);
 renderer.render();
 
-document.querySelector('.js-rotate--left').addEventListener('click', (): void => {
-    t.rotate(-90);
+keyboard({
+    left(): void {
+        window.console.log('left');
 
-    renderer.render();
-});
+        t.move({
+            x: -tetrominoSize.width,
+            y: 0
+        });
 
-document.querySelector('.js-rotate--right').addEventListener('click', (): void => {
-    t.rotate(90);
+        renderer.render();
+    },
+    right(): void {
+        window.console.log('right');
 
-    renderer.render();
+        t.move({
+            x: tetrominoSize.width,
+            y: 0
+        });
+
+        renderer.render();
+    },
+    counterClockwise(): void {
+        window.console.log('counterClockwise');
+
+        t.rotate(-90);
+
+        renderer.render();
+    },
+    clockwise(): void {
+        window.console.log('clockwise');
+
+        t.rotate(90);
+
+        renderer.render();
+    }
 });

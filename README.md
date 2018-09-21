@@ -6,7 +6,7 @@
 - ~~render tetromino~~
 - ~~rotate tetromino~~
 - ~~create tetrominoes~~
-- move tetromino
+- ~~move tetromino~~
 - random tetromino
 - create layout
 - game engine
