@@ -1,18 +1,7 @@
-import * as geometry from '@apestaartje/geometry';
-
 import { Tetromino } from 'app/tetris/tetromino/Tetromino';
 import { Type } from 'app/tetris/tetromino/Type';
 
-const BLUE: string = '#00ffff';
-const DARK_BLUE: string = '#0000ff';
-const ORANGE: string = '#ffa500';
-const YELLOW: string = '#ffff00';
-const GREEN: string = '#00ff00';
-const PINK: string = '#ff00ff';
-const RED: string = '#ff0000';
-
-export function factory(type: Type, position: geometry.point.Point): Tetromino {
-    let color: string;
+export function factory(type: Type): Tetromino {
     let shape: Array<Array<boolean>>;
 
     switch (type) {
@@ -23,14 +12,12 @@ export function factory(type: Type, position: geometry.point.Point): Tetromino {
                 [true, true, true, true],
                 [false, false, false, false]
             ];
-            color = BLUE;
             break;
         case 'O':
             shape = [
                 [true, true],
                 [true, true]
             ];
-            color = YELLOW;
             break;
         case 'T':
             shape = [
@@ -38,7 +25,6 @@ export function factory(type: Type, position: geometry.point.Point): Tetromino {
                 [true, true, true],
                 [false, true, false]
             ];
-            color = PINK;
             break;
         case 'L':
             shape = [
@@ -46,7 +32,6 @@ export function factory(type: Type, position: geometry.point.Point): Tetromino {
                 [true, true, true],
                 [true, false, false]
             ];
-            color = ORANGE;
             break;
         case 'S':
             shape = [
@@ -54,7 +39,6 @@ export function factory(type: Type, position: geometry.point.Point): Tetromino {
                 [false, true, true],
                 [true, true, false]
             ];
-            color = GREEN;
             break;
         case 'J':
             shape = [
@@ -62,7 +46,6 @@ export function factory(type: Type, position: geometry.point.Point): Tetromino {
                 [true, true, true],
                 [false, false, true]
             ];
-            color = DARK_BLUE;
             break;
         case 'Z':
             shape = [
@@ -70,17 +53,10 @@ export function factory(type: Type, position: geometry.point.Point): Tetromino {
                 [true, true, false],
                 [false, true, true]
             ];
-            color = RED;
             break;
         default:
             throw new Error(`Unknown type "${type}"`);
     }
 
-    return new Tetromino(
-        position,
-        {
-            color,
-            shape
-        }
-    );
+    return new Tetromino(type, shape);
 }

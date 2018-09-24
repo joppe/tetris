@@ -1,86 +1,53 @@
 import * as geometry from '@apestaartje/geometry';
 
-import { Config } from 'app/tetris/render/Config';
+import { Grid } from 'app/tetris/grid/Grid';
 import { IRenderable } from 'app/tetris/render/IRenderable';
 import { IRenderer } from 'app/tetris/render/IRenderer';
 
 export class HTMLRenderer implements IRenderer {
-    private _config: Config;
+    private _unitSize: number;
 
     private _container: HTMLElement;
 
-    private _shapes: Array<IRenderable> = [];
-
-    constructor(config: Config, container: HTMLElement) {
-        this._config = config;
+    constructor(unitSize: number, container: HTMLElement) {
+        this._unitSize = unitSize;
         this._container = container;
     }
 
-    public reset(): void {
-        this._shapes = [];
+    public setSize(size: geometry.size.Size): void {
+        this._container.style.width = `${size.width * this._unitSize}px`;
+        this._container.style.height = `${size.height * this._unitSize}px`;
     }
 
-    public register(renderable: IRenderable): void {
-        this._shapes.push(renderable);
-    }
-
-    public render(): void {
+    public renderGrid(grid: Grid<IRenderable | undefined>): void {
         this.clear();
 
-        this._shapes.forEach((shape: IRenderable): void => {
-            this._container.appendChild(
-                this.renderShape(shape)
-            );
-        });
-    }
+        for (const cell of grid.getCells()) {
+            if (cell === undefined) {
+                continue;
+            }
 
-    private clear(): void {
-        while (this._container.firstChild) {
-            this._container.removeChild(this._container.firstChild);
+            this.renderCell(cell);
         }
     }
 
-    private renderShape(shape: IRenderable): HTMLDivElement {
+    public renderCell(shape: IRenderable): void {
         const el: HTMLDivElement = document.createElement('div');
 
-        el.classList.add('tetromino');
+        el.classList.add('box', shape.name);
+        el.style.left = `${shape.position.x * this._unitSize}px`;
+        el.style.top = `${shape.position.y * this._unitSize}px`;
+        el.style.width = `${this._unitSize}px`;
+        el.style.height = `${this._unitSize}px`;
 
-        console.log(shape.position);
-        el.style.left = `${shape.position.x}px`;
-        el.style.top = `${shape.position.y}px`;
-        el.style.width = `${shape.size.width * this._config.tetrominoSize.width}px`;
-        el.style.height = `${shape.size.height * this._config.tetrominoSize.height}px`;
-
-        shape.shape.forEach((v: geometry.vector.Vector): void => {
-            el.appendChild(
-                this.createBox(
-                    v,
-                    this._config.tetrominoSize,
-                    shape.color
-                )
-            );
-        });
-
-        return el;
+        this._container.appendChild(el);
     }
 
-    private createBox(vector: geometry.vector.Vector, size: geometry.size.Size, color: string): HTMLDivElement {
-        const el: HTMLDivElement = document.createElement('div');
-
-        /**
-         * The vector is always pointing to the center of the box, therefore it must be subtracted with 0.5
-         */
-        const x: number = (vector.x - 0.5) * size.width;
-        const y: number = (vector.y - 0.5) * size.height;
-
-        el.classList.add('tetromino__part');
-
-        el.style.backgroundColor = color;
-        el.style.left = `${x}px`;
-        el.style.top = `${y}px`;
-        el.style.width = `${size.width}px`;
-        el.style.height = `${size.height}px`;
-
-        return el;
+    public clear(): void {
+        while (this._container.firstChild) {
+            this._container.removeChild(
+                this._container.firstChild
+            );
+        }
     }
 }

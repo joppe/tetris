@@ -1,5 +1,17 @@
+$blue: #00ffff;
+$dark-blue: #0000ff;
+$orange: #ffa500;
+$yellow: #ffff00;
+$green: #00ff00;
+$pink: #ff00ff;
+$red: #ff0000;
+
+
+
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -34,9 +46,8 @@ body {
 
 
 .next {
-    .tetromino {
-        position: relative;
-    }
+    position: relative;
+    margin-bottom: 32px;
 }
 
 
@@ -47,13 +58,36 @@ body {
 
 
 
-.tetromino {
-    position: absolute;
-}
-
-
-
-.tetromino__part {
+.box {
     position: absolute;
     box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0.75);
+
+    &.I {
+        background-color: $blue;
+    }
+
+    &.O {
+        background-color: $yellow;
+    }
+
+    &.T {
+        background-color: $pink;
+    }
+
+    &.L {
+        background-color: $orange;
+    }
+
+    &.S {
+        background-color: $green;
+    }
+
+    &.J {
+        background-color: $dark-blue;
+    }
+
+    &.Z {
+        background-color: $red;
+    }
+
 }

@@ -5,10 +5,7 @@ const game: Tetris = new Tetris({
         width: 20,
         height: 30
     },
-    tetrominoSize: {
-        width: 20,
-        height: 20
-    },
+    unitSize: 20,
     wellElement: document.querySelector('.js-tetris--well'),
     scoreElement: document.querySelector('.js-tetris--score'),
     nextElement: document.querySelector('.js-tetris--next')
