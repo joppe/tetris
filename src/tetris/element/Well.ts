@@ -18,8 +18,11 @@ export class Well {
             grid
         );
 
-        tetromino.shape.forEach((renderable: IRenderable): void => {
-            this._renderer.renderCell(renderable);
+        tetromino.shape.forEach((part: IRenderable): void => {
+            this._renderer.renderCell({
+                position: part.position,
+                value: part
+            });
         });
     }
 }

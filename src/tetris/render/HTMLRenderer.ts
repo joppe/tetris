@@ -1,6 +1,7 @@
 import * as geometry from '@apestaartje/geometry';
 
 import { Grid } from 'app/tetris/grid/Grid';
+import { ICell } from 'app/tetris/grid/ICell';
 import { IRenderable } from 'app/tetris/render/IRenderable';
 import { IRenderer } from 'app/tetris/render/IRenderer';
 
@@ -23,7 +24,7 @@ export class HTMLRenderer implements IRenderer {
         this.clear();
 
         for (const cell of grid.getCells()) {
-            if (cell === undefined) {
+            if (cell.value === undefined) {
                 continue;
             }
 
@@ -31,12 +32,12 @@ export class HTMLRenderer implements IRenderer {
         }
     }
 
-    public renderCell(shape: IRenderable): void {
+    public renderCell(cell: ICell<IRenderable>): void {
         const el: HTMLDivElement = document.createElement('div');
 
-        el.classList.add('box', shape.name);
-        el.style.left = `${shape.position.x * this._unitSize}px`;
-        el.style.top = `${shape.position.y * this._unitSize}px`;
+        el.classList.add('box', cell.value.name);
+        el.style.left = `${cell.position.x * this._unitSize}px`;
+        el.style.top = `${cell.position.y * this._unitSize}px`;
         el.style.width = `${this._unitSize}px`;
         el.style.height = `${this._unitSize}px`;
 

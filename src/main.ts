@@ -2,13 +2,12 @@ import { Tetris } from 'app/tetris/Tetris';
 
 const game: Tetris = new Tetris({
     size: {
-        width: 20,
-        height: 30
+        width: 12,
+        height: 18
     },
     unitSize: 20,
     wellElement: document.querySelector('.js-tetris--well'),
     scoreElement: document.querySelector('.js-tetris--score'),
-    nextElement: document.querySelector('.js-tetris--next')
+    nextElement: document.querySelector('.js-tetris--next'),
+    lineCountElement: document.querySelector('.js-tetris--line-count')
 });
-
-game.start();

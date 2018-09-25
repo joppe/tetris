@@ -16,8 +16,11 @@ export class Preview {
     public render(tetromino: Tetromino): void {
         this._renderer.clear();
 
-        tetromino.shape.forEach((renderable: IRenderable): void => {
-            this._renderer.renderCell(renderable);
+        tetromino.shape.forEach((part: IRenderable): void => {
+            this._renderer.renderCell({
+                position: part.position,
+                value: part
+            });
         });
     }
 }

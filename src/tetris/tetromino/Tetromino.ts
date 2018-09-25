@@ -4,6 +4,9 @@ import { IRenderable } from 'app/tetris/render/IRenderable';
 
 const CENTER_OFFSET: number = 0.5;
 
+/**
+ * size -> canvas size
+ */
 export class Tetromino {
     private _name: string;
     private _position: geometry.point.Point = { x: 0, y: 0 };
@@ -24,24 +27,6 @@ export class Tetromino {
                 }
             };
         });
-    }
-
-    get right(): number {
-        return this.shape.reduce(
-            (width: number, s: IRenderable): number => {
-                return Math.max(width, s.position.x);
-            },
-            0
-        );
-    }
-
-    get bottom(): number {
-        return this.shape.reduce(
-            (height: number, s: IRenderable): number => {
-                return Math.max(height, s.position.y);
-            },
-            0
-        );
     }
 
     get size(): geometry.size.Size {
@@ -110,5 +95,24 @@ export class Tetromino {
         this._vectors = this._vectors.map((v: geometry.vector.Vector): geometry.vector.Vector => {
             return transform.transformPoint(v);
         });
+    }
+
+    public calculateSize(): geometry.size.Size {
+        const edges: Array<number> = this.shape.reduce(
+            (acc: Array<number>, s: IRenderable): Array<number> => {
+                return [
+                    acc[0] !== undefined ? Math.min(acc[0], s.position.x) : s.position.x,
+                    acc[1] !== undefined ? Math.max(acc[1], s.position.x) : s.position.x,
+                    acc[2] !== undefined ? Math.min(acc[2], s.position.y) : s.position.y,
+                    acc[3] !== undefined ? Math.max(acc[3], s.position.y) : s.position.y
+                ];
+            },
+            [undefined, undefined, undefined, undefined]
+        );
+
+        return {
+            width: (edges[1] - edges[0]) + 1,
+            height: (edges[3] - edges[2]) + 1
+        };
     }
 }

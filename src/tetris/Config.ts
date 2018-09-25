@@ -6,4 +6,5 @@ export type Config = {
     wellElement: HTMLElement;
     nextElement: HTMLElement;
     scoreElement: HTMLElement;
+    lineCountElement: HTMLElement;
 };

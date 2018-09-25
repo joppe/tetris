@@ -1,6 +1,7 @@
 import * as geometry from '@apestaartje/geometry';
 
 import { Grid } from 'app/tetris/grid/Grid';
+import { ICell } from 'app/tetris/grid/ICell';
 import { IRenderable } from 'app/tetris/render/IRenderable';
 
 export interface IRenderer {
@@ -8,7 +9,7 @@ export interface IRenderer {
 
     renderGrid(grid: Grid<IRenderable>): void;
 
-    renderCell(shape: IRenderable): void;
+    renderCell(cell: ICell<IRenderable>): void;
 
     clear(): void;
 }

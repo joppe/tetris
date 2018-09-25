@@ -1,4 +1,5 @@
 import * as geometry from '@apestaartje/geometry';
+import { ICell } from 'app/tetris/grid/ICell';
 
 export class Grid<T> {
     private _size: geometry.size.Size;
@@ -19,7 +20,7 @@ export class Grid<T> {
         this.reset();
     }
 
-    public * getCells(): IterableIterator<T | undefined> {
+    public * getCells(): IterableIterator<ICell<T | undefined>> {
         for (let y: number = 0; y < this.height; y += 1) {
             for (let x: number = 0; x < this.width; x += 1) {
                 yield this.getCell({
@@ -30,19 +31,38 @@ export class Grid<T> {
         }
     }
 
-    public getCell(position: geometry.point.Point): T | undefined {
-        return this._cells[position.y][position.x];
+    public * getLine(y: number): IterableIterator<ICell<T | undefined>> {
+        for (let x: number = 0; x < this.width; x += 1) {
+            yield this.getCell({
+                x,
+                y
+            });
+        }
+    }
+
+    public removeLines(lines: Array<number>): void {
+        [...lines]
+            .sort()
+            .forEach((y: number) => {
+                this.removeLine(y);
+            });
+    }
+
+    public removeLine(y: number): void {
+        this._cells = [...this._cells.slice(0, y), ...this._cells.slice(y + 1)];
+
+        this._cells.unshift(this.emptyLine());
+    }
+
+    public getCell(position: geometry.point.Point): ICell<T | undefined> {
+        return {
+            position,
+            value: this._cells[position.y][position.x]
+        };
     }
 
     public setCell(position: geometry.point.Point, value: T | undefined): void {
         this._cells[position.y][position.x] = value;
-    }
-
-    public removeLine(amount: number = 1): void {
-        for (let i: number = 0; i < amount; i += 1) {
-            this._cells.pop();
-            this._cells.unshift(this.emptyLine());
-        }
     }
 
     public reset(): void {
