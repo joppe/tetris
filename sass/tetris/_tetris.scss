@@ -35,6 +35,16 @@ body {
 
 
 
+h1 {
+    margin-bottom: 16px;
+}
+
+
+
+h2 {
+    margin-bottom: 16px;
+}
+
 
 .well {
     position: relative;
@@ -43,11 +53,17 @@ body {
     flex: none;
 }
 
-
+.explanation {
+    margin-top: 32px;
+}
 
 .next {
-    position: relative;
     margin-bottom: 32px;
+}
+
+
+.u-relative {
+    position: relative;
 }
 
 
