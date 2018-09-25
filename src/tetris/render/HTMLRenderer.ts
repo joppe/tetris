@@ -45,7 +45,7 @@ export class HTMLRenderer implements IRenderer {
     }
 
     public clear(): void {
-        while (this._container.firstChild) {
+        while (this._container.firstChild !== null) {
             this._container.removeChild(
                 this._container.firstChild
             );

@@ -14,15 +14,15 @@ import { random } from 'app/tetris/tetromino/random';
 import { Tetromino } from 'app/tetris/tetromino/Tetromino';
 
 export class Tetris {
-    private _started: number;
+    private _started: number | undefined;
     private _speed: number = 1;
 
     private _size: geometry.size.Size;
     private _unitSize: number;
     private _grid: Grid<IRenderable>;
 
-    private _next: Tetromino;
-    private _current: Tetromino;
+    private _next: Tetromino | undefined;
+    private _current: Tetromino | undefined;
 
     private _well: Well;
     private _preview: Preview;
@@ -49,14 +49,14 @@ export class Tetris {
     }
 
     public start(): void {
-        if (this._started) {
-            this.stop();
-        } else {
+        if (this._started === undefined) {
             if (this._current === undefined) {
                 this.place();
             }
 
             this._started = window.setInterval(this.tick.bind(this), 800);
+        } else {
+            this.stop();
         }
     }
 
@@ -113,7 +113,7 @@ export class Tetris {
     }
 
     private place(): void {
-        if (!this._next) {
+        if (this._next === undefined) {
             this._next = random();
         }
 
@@ -211,8 +211,12 @@ export class Tetris {
     private canRotate(tetromino: Tetromino, degrees: number): boolean {
         return this.shouldFit(
             this._current,
-            () => this._current.rotate(degrees),
-            () => this._current.rotate(-degrees)
+            (): void => {
+                this._current.rotate(degrees);
+            },
+            (): void => {
+                this._current.rotate(-degrees);
+            }
         );
     }
 
@@ -221,8 +225,12 @@ export class Tetris {
 
         return this.shouldFit(
             this._current,
-            () => this._current.move(offset),
-            () => this._current.set(oldPosition)
+            (): void => {
+                this._current.move(offset);
+            },
+            (): void => {
+                this._current.set(oldPosition);
+            }
         );
     }
 
@@ -249,21 +257,33 @@ export class Tetris {
 
     private addControls(): void {
         keyboard({
-            left: this.move.bind(this, {
-                x: -1,
-                y: 0
-            }),
-            right: this.move.bind(this, {
-                x: 1,
-                y: 0
-            }),
-            down: this.move.bind(this, {
-                x: 0,
-                y: 1
-            }),
-            start: this.start.bind(this),
-            clockwise: this.rotate.bind(this, 90),
-            counterClockwise: this.rotate.bind(this, -90)
+            left: (): void => {
+                this.move({
+                    x: -1,
+                    y: 0
+                });
+            },
+            right: (): void => {
+                this.move({
+                    x: 1,
+                    y: 0
+                });
+            },
+            down: (): void => {
+                this.move.bind({
+                    x: 0,
+                    y: 1
+                });
+            },
+            start: (): void => {
+                this.start();
+            },
+            clockwise: (): void => {
+                this.rotate(90);
+            },
+            counterClockwise: (): void => {
+                this.rotate(-90);
+            }
         });
     }
 }
