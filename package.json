@@ -4,7 +4,7 @@
   "description": "A tetris game",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --content-base public/",
     "lint": "tslint --config ./tslint.json --project tsconfig.json",
     "test": "karma start karma.conf.js",
     "test:watch": "karma start karma.conf.js --no-single-run --auto-watch"
@@ -25,16 +25,8 @@
   "devDependencies": {
     "@apestaartje/geometry": "^1.2.1",
     "@apestaartje/number": "^1.2.0",
-    "@types/jasmine": "^2.8.6",
     "autoprefixer": "^8.6.4",
-    "coveralls": "^3.0.1",
     "css-loader": "^0.28.11",
-    "jasmine-core": "^3.1.0",
-    "karma": "^2.0.4",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-jasmine": "^1.1.2",
-    "karma-typescript": "^3.0.12",
-    "karma-typescript-es6-transform": "^1.0.4",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.0",
     "postcss-loader": "^2.1.5",

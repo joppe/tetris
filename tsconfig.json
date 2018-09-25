@@ -1,11 +1,10 @@
 {
     "compilerOptions": {
         "baseUrl": "./",
-        "declaration": true,
         "experimentalDecorators": true,
         "module": "commonjs",
         "moduleResolution": "node",
-        "outDir": "dist",
+        "outDir": "public/dist",
         "paths": {
             "app/*": [
                 "./src/*"
@@ -16,9 +15,10 @@
         "target": "es6"
     },
     "exclude": [
-        "dist"
+        "public/dist",
+        "node_modules"
     ],
     "include": [
-        "src/**/*.ts", "test/unit/sudoku/grid/group/byBlock.spec.ts", "test/unit/sudoku/grid/group/byCol.spec.ts", "test/unit/sudoku/grid/getCellByCoords.spec.ts", "test/unit/sudoku/possibilities/complementByCell.spec.ts"
+        "src/**/*.ts"
     ]
 }

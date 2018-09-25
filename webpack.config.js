@@ -61,8 +61,8 @@ const config = {
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/dist'
+        path: path.resolve(__dirname, 'public'),
+        publicPath: '/assets/'
     },
     plugins: [
         new MiniCssExtractPlugin({
@@ -70,7 +70,7 @@ const config = {
             // both options are optional
             filename: '[name].css',
             chunkFilename: '[id].css',
-            path: path.resolve(__dirname, 'dist')
+            path: path.resolve(__dirname, 'public/assets')
         })
     ]
 };

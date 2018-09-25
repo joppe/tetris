@@ -1,5 +1,5 @@
 .idea/
 .vscode/
-dist/
+public/assets/
 node_modules/
 coverage/
