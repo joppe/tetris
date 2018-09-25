@@ -270,7 +270,7 @@ export class Tetris {
                 });
             },
             down: (): void => {
-                this.move.bind({
+                this.move({
                     x: 0,
                     y: 1
                 });
