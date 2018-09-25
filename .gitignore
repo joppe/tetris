@@ -1,2 +1,5 @@
 .idea/
-.sass-cache/
+.vscode/
+public/assets/
+node_modules/
+coverage/
