@@ -127,6 +127,7 @@ export class Tetris {
             this.stop();
 
             window.alert('Game over');
+            window.location.reload();
 
             return;
         }
