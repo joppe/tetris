@@ -61,7 +61,7 @@ const config = {
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, 'public/assets'),
         publicPath: '/assets/'
     },
     plugins: [
