@@ -23,7 +23,7 @@
 - ~~game over~~
 - ~~points~~
 - ~~start~~
-- restart
+- ~~restart~~
 
 
 ## Resources
