@@ -1,6 +1,6 @@
 # Tetris
 
-Result can be found [here](https://github.com/joppe/tetris)
+Result can be found [here](https://stoic-saha-73d2b3.netlify.com/).
 
 ## Todo
 
