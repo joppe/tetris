@@ -1,30 +1,13 @@
 # Tetris
 
-Result can be found [here](https://stoic-saha-73d2b3.netlify.com/).
+This is rebuild of my previous (successful) attempt to create a Tetris like game. The rebuild is taking place in a couple of phases, these are outlined below. The demo of the old version can be found [here](https://stoic-saha-73d2b3.netlify.com/).
 
-## Todo
+A note for everyone that is thinking why doesn't he just use framework x of library z? The goal is not the game itself, but the journey. I want to learn how to create an implement certain patterns. The best way form me to learn these concepts is to create it myself.
 
-- ~~render tetromino~~
-- ~~rotate tetromino~~
-- ~~create tetrominoes~~
-- ~~move tetromino~~
-- ~~random tetromino~~
-- ~~create layout~~
-- ~~show next~~
-- ~~use a grid (default empty cell)~~
-- ~~name tetromino~~
-- ~~move color of tetromino to css~~
-- ~~view for preview~~
-- ~~view for well~~
-- ~~view for score~~
-- ~~tick/fall active tetromino~~
-- ~~collision detection~~
-- ~~next tetromino~~
-- ~~detect line~~
-- ~~game over~~
-- ~~points~~
-- ~~start~~
-- ~~restart~~
+
+## Finite state machine
+
+A finite state machine is implemented to define the states of the application. There will be 
 
 
 ## Resources

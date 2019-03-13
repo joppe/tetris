@@ -4,7 +4,6 @@
         "experimentalDecorators": true,
         "module": "commonjs",
         "moduleResolution": "node",
-        "outDir": "public/dist",
         "paths": {
             "app/*": [
                 "./src/*"
@@ -14,10 +13,6 @@
         "sourceMap": true,
         "target": "es6"
     },
-    "exclude": [
-        "public/dist",
-        "node_modules"
-    ],
     "include": [
         "src/**/*.ts"
     ]
