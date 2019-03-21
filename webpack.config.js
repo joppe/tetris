@@ -13,6 +13,7 @@ const config = {
     entry: {
         'css/main': './sass/main.jscss',
         'js/main': './src/main.ts',
+        'js/demo/observable': './src/demo/observable.ts',
     },
 
     module: {
@@ -27,12 +28,7 @@ const config = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     {
-                        loader: 'css-loader',
-                        options: {
-                            minimize: {
-                                safe: true
-                            }
-                        }
+                        loader: 'css-loader'
                     },
                     {
                         loader: 'postcss-loader',
@@ -55,6 +51,7 @@ const config = {
     },
     resolve: {
         alias: {
+            '@apestaartje': path.resolve(__dirname, 'src/lib'),
             app: path.resolve(__dirname, 'src')
         },
         extensions: ['.tsx', '.ts', '.js']

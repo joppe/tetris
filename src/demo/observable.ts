@@ -1,9 +1,8 @@
-import { CancelSubscription } from '@apestaartje/observable/observable/CancelSubscription';
 import { fromElement } from '@apestaartje/observable/observable/fromElement';
 import { timer } from '@apestaartje/observable/observable/timer';
 import { map } from '@apestaartje/observable/operator/map';
 
-const subscription: CancelSubscription = timer(20)
+timer(20)
     .pipe(
         map((x: number): number => x * 2)
     )
