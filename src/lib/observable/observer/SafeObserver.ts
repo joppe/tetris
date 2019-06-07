@@ -1,4 +1,4 @@
-import { IObserver } from './IObserver';
+import { Observer } from './Observer';
 
 /**
  * Safe implementation of an Observer
@@ -6,12 +6,12 @@ import { IObserver } from './IObserver';
  * @source https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87
  */
 
-export class SafeObserver<T> implements IObserver<T> {
+export class SafeObserver<T> implements Observer<T> {
     private _isUnsubscribed: boolean = false;
-    private readonly _observer: IObserver<T>;
+    private readonly _observer: Observer<T>;
     private _unsubscribeHandler: Function | undefined;
 
-    constructor(observer: IObserver<T>) {
+    constructor(observer: Observer<T>) {
         this._observer = observer;
     }
 

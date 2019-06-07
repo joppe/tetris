@@ -1,4 +1,4 @@
-export interface IObserver<T> {
+export interface Observer<T> {
     next?(value: T): void;
     error?(err: Error): void;
     complete?(): void;

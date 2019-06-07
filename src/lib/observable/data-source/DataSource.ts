@@ -1,14 +1,16 @@
-import { DataSourceOptions } from './DataSourceOptions';
+import { CompleteHandler } from './CompleteHandler';
+import { DataHandler } from './DataHandler';
+import { Options } from './Options';
 
 /**
  * Abstract class for emitting data
  */
 
 export abstract class DataSource<T> {
-    protected _onComplete: () => void | undefined;
-    protected _onData: (value: T) => void | undefined;
+    protected _onComplete: CompleteHandler | undefined;
+    protected _onData: DataHandler<T> | undefined;
 
-    constructor({ onData, onComplete}: Partial<DataSourceOptions<T>>) {
+    constructor({ onData, onComplete }: Partial<Options<T>>) {
         this._onComplete = onComplete;
         this._onData = onData;
     }

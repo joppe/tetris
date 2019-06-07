@@ -1,24 +1,28 @@
-import { IStates } from '../state/IStates';
-import { IMachine } from './IMachine';
+import { States } from '../state/States';
+import { Machine } from './Machine';
 
-export function factory({ initial, states }: IStates): IMachine {
+export function factory({ initial, states }: States): Machine {
     const history: string[] = [];
 
     return {
-        history: (): string[] => history,
-        initial: (): string => initial,
-        transition: (current: string = initial): (event: string) => string => {
-            return (event: string): string => {
-                const next: string | undefined = states[current].on[event];
+        history(): string[] {
+            return history;
+        },
 
-                if (next === undefined) {
-                    return current;
-                }
+        initial(): string {
+            return initial;
+        },
 
-                history.push(next);
+        transition(event: string, current: string = initial): string {
+            const next: string | undefined = states[current].on[event];
 
-                return next;
-            };
-        }
+            if (next === undefined) {
+                return current;
+            }
+
+            history.push(next);
+
+            return next;
+        },
     };
 }

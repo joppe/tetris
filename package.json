@@ -35,7 +35,5 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
   },
-  "dependencies": {
-    "tslint-config-airbnb": "^5.11.1"
-  }
+  "dependencies": {}
 }

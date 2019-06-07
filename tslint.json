@@ -5,8 +5,10 @@
     ],
     "jsRules": {},
     "rules": {
+        "missing-jsdoc": false,
         "no-implicit-dependencies": false,
         "no-submodule-imports": false,
+        "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
         "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"]
     },
     "rulesDirectory": []

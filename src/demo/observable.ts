@@ -1,6 +1,6 @@
-import { fromElement } from '@apestaartje/observable/observable/fromElement';
-import { timer } from '@apestaartje/observable/observable/timer';
-import { map } from '@apestaartje/observable/operator/map';
+import { fromElement } from '@apestaartje/observable/observable/factory/fromElement';
+import { map } from '@apestaartje/observable/operator/map/map';
+import { timer } from '@apestaartje/observable/observable/factory/timer';
 
 timer(20)
     .pipe(
@@ -15,7 +15,7 @@ timer(20)
         },
         complete(): void {
             window.console.log('Complete');
-    }
+        },
     });
 
 const button: HTMLButtonElement = window.document.createElement('button');
@@ -28,5 +28,5 @@ fromElement(button, 'click')
     .subscribe({
         next: (event: Event): void => {
             window.console.log(event);
-        }
+        },
     });

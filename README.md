@@ -8,8 +8,15 @@ A note for everyone that is thinking why doesn't he just use framework x of libr
 ## Finite state machine
 
 A finite state machine is implemented to define the states of the application. There will be 
-
+https://github.com/sospedra/finite-state-machine-demo
+https://github.com/davidkpiano/xstate
+https://github.com/jakesgordon/javascript-state-machine
+https://codeincomplete.com/posts/javascript-game-foundations-state-management/
 
 ## Resources
 
 - https://en.wikipedia.org/wiki/Tetromino
+
+
+
+

@@ -14,6 +14,7 @@ const config = {
         'css/main': './sass/main.jscss',
         'js/main': './src/main.ts',
         'js/demo/observable': './src/demo/observable.ts',
+        'js/demo/lens': './src/demo/lens.ts',
     },
 
     module: {

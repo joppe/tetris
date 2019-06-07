@@ -1,6 +1,6 @@
-import { SafeObserver } from '../observer/SafeObserver';
-import { CancelSubscription } from './CancelSubscription';
-import { Observable } from './Observable';
+import { CancelSubscription } from '../CancelSubscription';
+import { Observable } from '../Observable';
+import { SafeObserver } from '../../observer/SafeObserver';
 
 export function fromElement(element: HTMLElement, eventName: string): Observable<Event> {
     return new Observable<Event>((observer: SafeObserver<Event>): CancelSubscription => {

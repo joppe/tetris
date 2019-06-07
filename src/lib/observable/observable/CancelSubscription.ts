@@ -1,1 +1,3 @@
-export type CancelSubscription = Function;
+export interface CancelSubscription {
+    (): void;
+}

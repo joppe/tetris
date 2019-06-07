@@ -1,4 +1,7 @@
-export * from './machine/factory';
-export * from './machine/IMachine';
-export * from './state/IState';
-export * from './state/IStates';
+import * as machine from './machine/index';
+import * as state from './state/index';
+
+export {
+    machine,
+    state,
+};

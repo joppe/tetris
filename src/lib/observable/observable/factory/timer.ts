@@ -1,7 +1,7 @@
-import { Timer } from '../data-source/Timer';
-import { SafeObserver } from '../observer/SafeObserver';
-import { CancelSubscription } from './CancelSubscription';
-import { Observable } from './Observable';
+import { CancelSubscription } from '../CancelSubscription';
+import { Observable } from '../Observable';
+import { SafeObserver } from '../../observer/SafeObserver';
+import { Timer } from '../../data-source/timer/Timer';
 
 export function timer(duration: number): Observable<number> {
     return new Observable<number>((observer: SafeObserver<number>): CancelSubscription => {
