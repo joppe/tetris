@@ -1,18 +1,20 @@
 import { Getter } from './Getter';
 import { Setter } from './Setter';
 
-export interface Lens<T> {
-    get(obj: T): T[keyof T];
-    set(value: T[keyof T], obj: T): T;
+// tslint:disable: no-reserved-keywords
+
+export interface Lens<T, K> {
+    get: Getter<T, K>;
+    set: Setter<T, K>;
 }
 
-export function lens<T>(getter: Getter<T>, setter: Setter<T>): Lens<T> {
+export function lens<T, K>(getter: Getter<T, K>, setter: Setter<T, K>): Lens<T, K> {
     return {
-        get(obj: T) {
+        get(obj: T): K {
             return getter(obj);
         },
 
-        set(value: T[keyof T], obj: T) {
+        set(value: K, obj: T): T {
             return setter(value, obj);
         },
     };

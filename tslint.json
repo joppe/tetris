@@ -5,6 +5,9 @@
     ],
     "jsRules": {},
     "rules": {
+        "callable-types": false,
+        "completed-docs": false,
+        "interface-name": [true, "never-prefix"],
         "missing-jsdoc": false,
         "no-implicit-dependencies": false,
         "no-submodule-imports": false,

@@ -1,16 +1,54 @@
 import * as lens from '@apestaartje/lens';
+import * as store from '@apestaartje/store';
 
-type Point = {
-    x: number;
-    y: number;
-};
+type Thermometer = { fahrenheit: number };
 
-const a: Point = { x: 0, y: 78 };
-const l: lens.Lens<Point> = lens.lens(lens.prop('x'), lens.assoc('x'));
-const b: Point = l.set(99, a);
+const initial: Thermometer = { fahrenheit: 70 };
+const s: store.Store<Thermometer> = new store.Store<Thermometer>(initial);
 
-console.log('new', b);
-console.log('old', a);
+function celciusToFahrenheit(celclius: number): number {
+    return celclius * (9 / 5) + 32;
+}
 
-console.log(lens.view(l, b));
-console.log(lens.set(l, 6, b));
+function fahrenheitToCelcius(fahrenheit: number): number {
+    return (fahrenheit - 32) * (5 / 9);
+}
+
+const fahrenheitLens: lens.Lens<Thermometer, number> = lens.lens(
+    (st: Thermometer): number => st.fahrenheit,
+    (fahrenheit: number, st: Thermometer): Thermometer => {
+        return {
+            ...st,
+            fahrenheit,
+        };
+    },
+);
+
+const fahrenheitPromap = s.promap(fahrenheitLens);
+
+fahrenheitPromap.set((f: number): number => {
+    return f + 5;
+});
+
+console.log('initial', initial);
+console.log('new', fahrenheitPromap.data);
+
+const celcliusLens = lens.lens(
+    (fahrenheit: number) => {
+        console.log(fahrenheit);
+        return fahrenheitToCelcius(fahrenheit)
+    },
+    (celclius, x) => {
+        console.log('x', x);
+        console.log('celcius', celclius);
+        return celciusToFahrenheit(celclius);
+    }
+);
+
+const celciusPromap = fahrenheitPromap.promap(celcliusLens);
+
+console.log('celcius', celciusPromap.data);
+
+// s2.set((c) => c + 20);
+
+// console.log(s2.data);

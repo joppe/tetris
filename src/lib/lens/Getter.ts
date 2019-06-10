@@ -1,3 +1,3 @@
-export interface Getter<T> {
-    (obj: T): T[keyof T];
+export interface Getter<T, K> {
+    (prop: T): K;
 }

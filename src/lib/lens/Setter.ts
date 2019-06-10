@@ -1,3 +1,3 @@
-export interface Setter<T> {
-    (value: T[keyof T], obj: T): T;
+export interface Setter<T, K> {
+    (value: K, obj: T): T;
 }
