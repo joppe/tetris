@@ -5,7 +5,7 @@ import { SafeObserver } from '../observer/SafeObserver';
 import { SubscriptionFactory } from './SubscriptionFactory';
 
 export class Observable<T> {
-    private _subscriber: SubscriptionFactory<T>;
+    private readonly _subscriber: SubscriptionFactory<T>;
 
     constructor(subscriber: SubscriptionFactory<T>) {
         this._subscriber = subscriber;
@@ -21,7 +21,9 @@ export class Observable<T> {
 
         safeObserver.registerUnsubscribeHandler(this._subscriber(safeObserver));
 
-        return safeObserver.unsubscribe.bind(safeObserver);
+        return (): void => {
+            safeObserver.unsubscribe();
+        };
     }
 
     public pipe<K>(...operators: Operator<any, any>[]): Observable<K> {

@@ -3,9 +3,6 @@ import * as store from '@apestaartje/store';
 
 type Thermometer = { fahrenheit: number };
 
-const initial: Thermometer = { fahrenheit: 70 };
-const s: store.Store<Thermometer> = new store.Store<Thermometer>(initial);
-
 function celciusToFahrenheit(celclius: number): number {
     return celclius * (9 / 5) + 32;
 }
@@ -13,6 +10,9 @@ function celciusToFahrenheit(celclius: number): number {
 function fahrenheitToCelcius(fahrenheit: number): number {
     return (fahrenheit - 32) * (5 / 9);
 }
+
+const initial: Thermometer = { fahrenheit: 70 };
+const s: store.Store<Thermometer> = new store.Store<Thermometer>(initial);
 
 const fahrenheitLens: lens.Lens<Thermometer, number> = lens.lens(
     (st: Thermometer): number => st.fahrenheit,
@@ -32,7 +32,7 @@ fahrenheitPromap.set((f: number): number => {
 
 console.log('initial', initial);
 console.log('new', fahrenheitPromap.data);
-
+/*
 const celcliusLens = lens.lens(
     (fahrenheit: number) => {
         console.log(fahrenheit);
@@ -52,3 +52,4 @@ console.log('celcius', celciusPromap.data);
 // s2.set((c) => c + 20);
 
 // console.log(s2.data);
+*/

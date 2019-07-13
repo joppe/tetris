@@ -18,7 +18,7 @@ export abstract class DataSource<T> {
     public abstract destroy(): void;
 
     protected emit(value: T): void {
-        if (this._onData) {
+        if (this._onData !== undefined) {
             this._onData(value);
         }
     }

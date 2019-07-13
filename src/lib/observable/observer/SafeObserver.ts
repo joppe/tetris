@@ -17,7 +17,7 @@ export class SafeObserver<T> implements Observer<T> {
 
     public next(value: T): void {
         // only try to next if you're subscribed have a handler
-        if (!this._isUnsubscribed && this._observer.next) {
+        if (!this._isUnsubscribed && this._observer.next !== undefined) {
             try {
                 this._observer.next(value);
             } catch (err) {
@@ -31,7 +31,7 @@ export class SafeObserver<T> implements Observer<T> {
 
     public error(err: Error): void {
         // only try to emit error if you're subscribed and have a handler
-        if (!this._isUnsubscribed && this._observer.error) {
+        if (!this._isUnsubscribed && this._observer.error !== undefined) {
             try {
                 this._observer.error(err);
             } catch (e2) {
@@ -40,13 +40,14 @@ export class SafeObserver<T> implements Observer<T> {
 
                 throw e2;
             }
+
             this.unsubscribe();
         }
     }
 
     public complete(): void {
         // only try to emit completion if you're subscribed and have a handler
-        if (!this._isUnsubscribed && this._observer.complete) {
+        if (!this._isUnsubscribed && this._observer.complete !== undefined) {
             try {
                 this._observer.complete();
             } catch (err) {
@@ -67,7 +68,7 @@ export class SafeObserver<T> implements Observer<T> {
     public unsubscribe(): void {
         this._isUnsubscribed = true;
 
-        if (this._unsubscribeHandler) {
+        if (this._unsubscribeHandler !== undefined) {
             this._unsubscribeHandler();
         }
     }

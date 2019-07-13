@@ -7,12 +7,36 @@
     "rules": {
         "callable-types": false,
         "completed-docs": false,
-        "interface-name": [true, "never-prefix"],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ],
         "missing-jsdoc": false,
         "no-implicit-dependencies": false,
         "no-submodule-imports": false,
-        "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
-        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"]
+        "ordered-imports": [
+            true,
+            {
+                "grouped-imports": false,
+                "import-sources-order": "any",
+                "named-imports-order": "lowercase-first",
+                "module-source-path": "basename"
+            }
+        ],
+        "trailing-comma": [
+            true,
+            {
+                "multiline": "always",
+                "singleline": "never"
+            }
+        ],
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore",
+            "allow-pascal-case"
+        ]
     },
     "rulesDirectory": []
 }

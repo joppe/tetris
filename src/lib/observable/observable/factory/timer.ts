@@ -13,9 +13,9 @@ export function timer(duration: number): Observable<number> {
                 },
                 onData: (value: number): void => {
                     observer.next(value);
-                }
+                },
             },
-            duration
+            duration,
         );
 
         return (): void => {

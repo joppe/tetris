@@ -29,12 +29,12 @@ export class Timer extends DataSource<number> {
     }
 
     protected emit(value: number): void {
-        if (this._onData) {
+        if (this._onData !== undefined) {
             this._onData(value);
         }
 
         if (this._repeat === value) {
-            if (this._onComplete) {
+            if (this._onComplete !== undefined) {
                 this._onComplete();
             }
 
