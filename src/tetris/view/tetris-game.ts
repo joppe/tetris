@@ -4,7 +4,7 @@ import '@tetris/view/page/game-page';
 import '@tetris/view/page/start-page';
 
 import { CustomELement } from '@apestaartje/custom-element/CustomElement';
-import { HTMLCustomElement } from '@apestaartje/custom-element/HTMLCustomElement';
+import { ChildView } from '@apestaartje/custom-element/ChildView';
 
 @CustomELement({
     selector: 'tetris-game',
@@ -15,12 +15,11 @@ import { HTMLCustomElement } from '@apestaartje/custom-element/HTMLCustomElement
         </nav>
     `,
 })
-export class TetrisGame extends HTMLElement implements HTMLCustomElement {
-    constructor() {
-        super();
-    }
+export class TetrisGame extends HTMLElement {
+    @ChildView('button')
+    public button: HTMLElement | null;
 
-    connectedCallback(): void {
-
+    public connectedCallback(): void {
+        console.log(this.button);
     }
 }
