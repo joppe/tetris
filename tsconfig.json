@@ -8,8 +8,8 @@
             "@apestaartje/*": [
                 "./src/lib/*"
             ],
-            "app/*": [
-                "./src/*"
+            "@tetris/*": [
+                "./src/tetris/*"
             ]
         },
         "removeComments": true,

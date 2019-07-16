@@ -4,7 +4,7 @@
   "description": "A tetris game",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --content-base public/",
+    "dev": "webpack-dev-server --port 5000 --content-base public/",
     "lint": "tslint --config ./tslint.json --project tsconfig.json"
   },
   "repository": {

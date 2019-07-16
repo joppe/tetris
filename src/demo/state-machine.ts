@@ -1,7 +1,7 @@
 import { machine, state } from '@apestaartje/state-machine';
 
-import * as events from 'app/state/event';
-import * as states from 'app/state/state';
+import * as events from '@tetris/state/event';
+import * as states from '@tetris/state/state';
 
 const stateConfig: state.States = {
     initial: states.HOME,
