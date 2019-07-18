@@ -13,6 +13,7 @@
         ],
         "missing-jsdoc": false,
         "no-implicit-dependencies": false,
+        "no-reserved-keywords": false,
         "no-submodule-imports": false,
         "ordered-imports": [
             true,

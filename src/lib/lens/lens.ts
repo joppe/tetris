@@ -1,8 +1,6 @@
 import { Getter } from './Getter';
 import { Setter } from './Setter';
 
-// tslint:disable: no-reserved-keywords
-
 export interface Lens<T, K> {
     get: Getter<T, K>;
     set: Setter<T, K>;

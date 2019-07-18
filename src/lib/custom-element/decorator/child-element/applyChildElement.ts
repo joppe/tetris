@@ -1,0 +1,27 @@
+// tslint:disable-next-line no-import-side-effect
+import 'reflect-metadata';
+
+import { ChildElementMetadataData, CHILD_ELEMENT_META_DATA_KEY } from './ChildElementMetadata';
+
+export function applyChildElement(target: HTMLElement): void {
+    if (Reflect.hasMetadata(CHILD_ELEMENT_META_DATA_KEY, target)) {
+        const data: ChildElementMetadataData = <ChildElementMetadataData>Reflect.getMetadata(CHILD_ELEMENT_META_DATA_KEY, target);
+
+        Object.keys(data)
+            .forEach((propertyName: string): void => {
+                const selector: string = data[propertyName];
+                Object.defineProperty(
+                    target,
+                    propertyName,
+                    {
+                        get: (): HTMLElement | null => {
+                            return (<ShadowRoot>target.shadowRoot).querySelector(selector);
+                        },
+                        set: (): void => {
+                            throw new Error('Do not try to set the value of a decorated "@ChildElement" property');
+                        },
+                    },
+                );
+            });
+    }
+}

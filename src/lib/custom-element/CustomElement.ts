@@ -1,16 +1,12 @@
-import 'reflect-metadata';
-import { CustomElementOptions } from '@apestaartje/custom-element/CustomElementOptions';
-import { CustomElementConstructor } from '@apestaartje/custom-element/CustomElementConstructor';
-import { isValidSelector } from '@apestaartje/custom-element/isValidSelector';
-import { CHILD_VIEW_KEY } from './ChildView';
+import { Constructor } from '@apestaartje/common/Constructor';
 
-/**
- * https://developers.google.com/web/fundamentals/web-components/customelements
- * https://developer.mozilla.org/en-US/docs/Web/Web_Components
- *
- * https://github.com/Cammisuli/typescript-custom-elements/blob/master/src/my-custom-element.ts
- * https://dzone.com/articles/how-to-avoid-a-distorted-android-camera-preview-wi
- */
+import { applyChildElement } from './decorator/child-element/applyChildElement';
+import { applyChildElements } from './decorator/child-element/applyChildElements';
+import { applyInput } from './decorator/input/applyInput';
+import { CustomElementOptions } from './CustomElementOptions';
+import { HTMLCustomElement } from './HTMLCustomElement';
+import { isValidSelector } from './isValidSelector';
+import { WATCH_ATTRIBUTES_PROPERTY } from './decorator/input/InputMetadata';
 
  /**
   * This is a class decorator.
@@ -18,7 +14,7 @@ import { CHILD_VIEW_KEY } from './ChildView';
   */
 
 // tslint:disable-next-line function-name no-any
-export function CustomELement<T extends CustomElementConstructor>(options: CustomElementOptions): (target: T) => any {
+export function CustomELement<T extends Constructor<HTMLCustomElement>>(options: CustomElementOptions): (target: T) => any {
     if (!isValidSelector(options.selector)) {
         throw new Error(`Invalid CustomElement selector "${options.selector}", always use a "-" in the name of the tag.`);
     }
@@ -26,7 +22,10 @@ export function CustomELement<T extends CustomElementConstructor>(options: Custo
     const template: HTMLTemplateElement = document.createElement('template');
 
     // tslint:disable no-inner-html
-    template.innerHTML = options.template;
+    template.innerHTML = `
+        <style>${options.style === undefined ? '' : options.style}</style>
+        ${options.template}
+    `;
 
     // tslint:disable-next-line no-any
     return (target: T): any => {
@@ -38,20 +37,14 @@ export function CustomELement<T extends CustomElementConstructor>(options: Custo
                 const shadowRoot: ShadowRoot = this.attachShadow({ mode: 'open' });
                 shadowRoot.appendChild(template.content.cloneNode(true));
 
-                const foo = Reflect.getMetadata(CHILD_VIEW_KEY, this);
+                applyChildElement(this);
+                applyChildElements(this);
+                applyInput(this);
+            }
 
-                Object.keys(foo).forEach((prop: string): void => {
-                    Object.defineProperty(
-                        this,
-                        prop,
-                        {
-                            get: (): HTMLElement | null => {
-                                return (<ShadowRoot>this.shadowRoot).querySelector('button');
-                            },
-                        },
-                    );
-                });
-                console.log('foo', foo);
+            // tslint:disable-next-line function-name
+            public static get observedAttributes(): string[] {
+                return <string[]>customElement[WATCH_ATTRIBUTES_PROPERTY];
             }
         };
 

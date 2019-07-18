@@ -1,11 +1,10 @@
-import { Lens, view } from '@apestaartje/lens';
+import { view, Lens } from '@apestaartje/lens';
 
 import { Set } from './Set';
 import { Updater } from './Updater';
 
-// tslint:disable:no-reserved-keywords
+let counter: number = 0;
 
-let counter = 0;
 export class Store<T> {
     public data: T;
     public set: Set<T>;
