@@ -1,0 +1,49 @@
+{
+  "name": "tetris",
+  "version": "2.0.0",
+  "description": "A tetris game",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server --content-base public/",
+    "lint": "tslint --config ./tslint.json --project tsconfig.json",
+    "test": "karma start karma.conf.js",
+    "test:watch": "karma start karma.conf.js --no-single-run --auto-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joppe/tetris"
+  },
+  "author": {
+    "name": "Joppe Aarts",
+    "email": "joppe@apestaartje.info"
+  },
+  "license": "MIT",
+  "keywords": [
+    "TypeScript",
+    "JavaScript"
+  ],
+  "devDependencies": {
+    "@types/jasmine": "^3.3.14",
+    "autoprefixer": "^9.6.1",
+    "coveralls": "^3.0.5",
+    "css-loader": "^3.1.0",
+    "jasmine-core": "^3.4.0",
+    "karma": "^4.2.0",
+    "karma-chrome-launcher": "^3.0.0",
+    "karma-jasmine": "^2.0.1",
+    "karma-typescript": "^4.1.1",
+    "karma-typescript-es6-transform": "^4.1.1",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "ts-loader": "^6.0.4",
+    "tslint": "^5.18.0",
+    "tslint-microsoft-contrib": "^6.2.0",
+    "typescript": "^3.5.3",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
+  },
+  "dependencies": {}
+}
