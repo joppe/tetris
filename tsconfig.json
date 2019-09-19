@@ -1,24 +1,24 @@
 {
-    "compilerOptions": {
-        "baseUrl": "./",
-        "experimentalDecorators": true,
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "outDir": "public/dist",
-        "paths": {
-            "app/*": [
-                "./src/*"
-            ]
-        },
-        "removeComments": true,
-        "sourceMap": true,
-        "target": "es6"
-    },
-    "exclude": [
-        "public/dist",
-        "node_modules"
-    ],
-    "include": [
-        "src/**/*.ts"
-    ]
+  "compilerOptions": {
+      "baseUrl": "./",
+      "experimentalDecorators": true,
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "paths": {
+          "@apestaartje/*": [
+              "./src/lib/*"
+          ],
+          "@tetris/*": [
+              "./src/tetris/*"
+          ]
+      },
+      "removeComments": true,
+      "sourceMap": true,
+      "strictBindCallApply": true,
+      "strictNullChecks": true,
+      "target": "es6"
+  },
+  "include": [
+      "src/**/*.ts"
+  ]
 }
