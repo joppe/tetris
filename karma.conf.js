@@ -53,9 +53,7 @@ module.exports = function (config) {
                 }
             },
             compilerOptions: {
-                module: 'commonjs',
-                sourceMap: true,
-                target: 'es5' // somehow I get an SoureMap warning and a error "Cannot read property 'filter' of null" when the target is `es6` while testing decorator.
+                sourceMap: true
             },
             tsconfig: './tsconfig.json'
 

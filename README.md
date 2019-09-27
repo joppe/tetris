@@ -1,5 +1,7 @@
 # Tetris
 
+[![Build Status](https://travis-ci.org/joppe/tetris.svg?branch=master)](https://travis-ci.org/joppe/tetris)
+
 ## Introduction
 
 This is a rebuild of my previous (successful) attempt to create a Tetris like game. The goal of this rebuild is to get acquainted with some TypeScript/JavaScript techniques and patterns. Some of these are:
@@ -33,8 +35,8 @@ These are the `npm` commands you can use:
 
 The project will be created in phases.
 
-- [ ] __Web components__, I want to use _Custom elements_ with _shadow DOM_ and _HTML templates_.
-- [ ] Use __decorators__ to make it easier to create a _Web component_.
+- [x] __Web components__, I want to use _Custom elements_ with _shadow DOM_ and _HTML templates_.
+- [x] Use __decorators__ to make it easier to create a _Web component_.
 - [ ] Use a __Finite state machine__ to ensure the flow through the pages.
 - [ ] The pages will share services that need to be singletons, they will be available through __Dependency injection__.
 - [ ] __Observables__ the DOM events that will control the game will be available as streams.
