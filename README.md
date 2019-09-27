@@ -18,6 +18,8 @@ A note for everyone that is thinking why doesn't he just use framework x of libr
 
 The project will be created with vanilla ~~JavaScript~~ TypeScript.
 
+The result (a work in progress) can be found [here](https://epic-liskov-4facef.netlify.com/)
+
 ## Setup
 
 The project is build with TypeScript and won't have any dependencies, of course it has a few dev-dependencies.
