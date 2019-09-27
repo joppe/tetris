@@ -28,11 +28,6 @@ const config = {
                     MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
-                        options: {
-                            minimize: {
-                                safe: true
-                            }
-                        }
                     },
                     {
                         loader: 'postcss-loader',
@@ -55,7 +50,8 @@ const config = {
     },
     resolve: {
         alias: {
-            app: path.resolve(__dirname, 'src')
+            '@apestaartje': path.resolve(__dirname, 'src/apestaartje'),
+            '@tetris': path.resolve(__dirname, 'src/tetris')
         },
         extensions: ['.tsx', '.ts', '.js']
     },

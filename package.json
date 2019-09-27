@@ -4,7 +4,7 @@
   "description": "A tetris game",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --content-base public/",
+    "dev": "webpack-dev-server --port 1234 --content-base public/",
     "lint": "tslint --config ./tslint.json --project tsconfig.json",
     "test": "karma start karma.conf.js",
     "test:watch": "karma start karma.conf.js --no-single-run --auto-watch"
@@ -19,8 +19,7 @@
   },
   "license": "MIT",
   "keywords": [
-    "TypeScript",
-    "JavaScript"
+    "TypeScript"
   ],
   "devDependencies": {
     "@types/jasmine": "^3.3.14",
@@ -36,6 +35,7 @@
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
+    "reflect-metadata": "^0.1.13",
     "sass-loader": "^7.1.0",
     "ts-loader": "^6.0.4",
     "tslint": "^5.18.0",
