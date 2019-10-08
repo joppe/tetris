@@ -75,43 +75,43 @@ describe('Observable', (): void => {
             observable.subscribe(observer);
 
             // the safeobserver is set after subscribe call
-            const observerSpy: jasmine.Spy = spyOn(safeObserver, 'next');
+            const nextSpy: jasmine.Spy = spyOn(safeObserver, 'next');
             next(true);
 
-            expect(observerSpy).toHaveBeenCalledWith(true);
+            expect(nextSpy).toHaveBeenCalledWith(true);
         });
 
         it('when finished doesn\'t receive new values via next', (): void => {
             observable.subscribe(observer);
 
             // the safeobserver is set after subscribe call
-            const observerSpy: jasmine.Spy = spyOn(safeObserver, 'next');
+            const nextSpy: jasmine.Spy = spyOn(safeObserver, 'next');
             complete();
             next(false);
 
-            expect(observerSpy).toHaveBeenCalled();
+            expect(nextSpy).toHaveBeenCalled();
         });
 
         it('when unsubscribed doesn\'t receive new values via next', (): void => {
             observable.subscribe(observer);
 
             // the safeobserver is set after subscribe call
-            const observerSpy: jasmine.Spy = spyOn(safeObserver, 'next');
+            const nextSpy: jasmine.Spy = spyOn(safeObserver, 'next');
             subscription.unsubscribe();
             next(false);
 
-            expect(observerSpy).toHaveBeenCalled();
+            expect(nextSpy).toHaveBeenCalled();
         });
 
         it('when an error occurs the error method is called', (): void => {
             observable.subscribe(observer);
 
             // the safeobserver is set after subscribe call
-            const observerSpy: jasmine.Spy = spyOn(safeObserver, 'error');
+            const errorSpy: jasmine.Spy = spyOn(safeObserver, 'error');
             const e: Error = new Error('?');
             error(e);
 
-            expect(observerSpy).toHaveBeenCalledWith(e);
+            expect(errorSpy).toHaveBeenCalledWith(e);
         });
     });
 

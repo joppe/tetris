@@ -3,7 +3,7 @@ import { Component } from '@apestaartje/dom/custom-element/decorator/component/C
 @Component({
     selector: 'tetris-home',
     template: `
-        <h1>Tetris!</h1>
+        <h1>TETЯIS!</h1>
     `,
 })
 export class HomePage extends HTMLElement {
