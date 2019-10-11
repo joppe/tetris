@@ -1,17 +1,15 @@
-import { Container } from './container/Container';
+import { Container } from './Container';
 
 /**
  * Factory function to create (and cache) dependencies.
  */
 
 export const factory: () => Container = ((): () => Container => {
-    let container: Container;
-    let isInvoked: boolean = false;
+    let container: Container | undefined;
 
     return (): Container => {
-        if (!isInvoked) {
+        if (container === undefined) {
             container = new Container();
-            isInvoked = true;
         }
 
         return container;
