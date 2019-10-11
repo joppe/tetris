@@ -18,6 +18,8 @@ A note for everyone that is thinking why doesn't he just use framework x of libr
 
 The project will be created with vanilla ~~JavaScript~~ TypeScript.
 
+The result (a work in progress) can be found [here](https://epic-liskov-4facef.netlify.com/)
+
 ## Setup
 
 The project is build with TypeScript and won't have any dependencies, of course it has a few dev-dependencies.
@@ -39,7 +41,7 @@ The project will be created in phases.
 - [x] Use __decorators__ to make it easier to create a _Web component_.
 - [ ] Use a __Finite state machine__ to ensure the flow through the pages.
 - [ ] The pages will share services that need to be singletons, they will be available through __Dependency injection__.
-- [ ] __Observables__ the DOM events that will control the game will be available as streams.
+- [x] __Observables__ the DOM events that will control the game will be available as streams.
 - [ ] A __Store__ to store the state of the game.
 - [ ] __Color manipulation__ to create darker and lighter colors from a given color. This will be used to draw the Tetrominos.
 - [ ] __Canvas__ for rendering the game.
