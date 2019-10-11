@@ -1,20 +1,33 @@
+import { map } from '@apestaartje/observable/operator/map/map';
 import { Observable } from '@apestaartje/observable/observable/Observable';
-import { Observer } from '@apestaartje/observable/observer/Observer';
-import { Subscription } from '@apestaartje/observable/observable/Subscription';
-import { Subscriber } from '@apestaartje/observable/observable/Subscriber';
+import { Operator } from '@apestaartje/observable/operator/Operator';
 import { SafeObserver } from '@apestaartje/observable/observer/SafeObserver';
+import { Subscriber } from '@apestaartje/observable/observable/Subscriber';
+import { Subscription } from '@apestaartje/observable/observable/Subscription';
+
+type NextableObserver<T> = { next(v: T): void };
+type ErrorableObserver<T> = { error(e: Error): void };
+type CompletableObserver<T> = { complete(): void };
+type CompleteObserver<T> = NextableObserver<T> & ErrorableObserver<T> & CompletableObserver<T>;
 
 describe('Observable', (): void => {
-    let next: (v: boolean) => void;
+    let next: (v: number) => void;
     let complete: () => void;
     let error: (err: Error) => void;
-    let observable: Observable<boolean>;
-    let safeObserver: SafeObserver<boolean>;
-    let subscriber: Subscriber<boolean>;
+    let observable: Observable<number>;
+    let safeObserver: SafeObserver<number>;
+    let subscriber: Subscriber<number>;
     let subscriberCalled: boolean;
+    let subscriberCalledCount: number;
 
-    const observer: Observer<boolean> = {
-        next(value: boolean): void {
+    const observer: CompleteObserver<number> = {
+        next(v: number): void {
+            // nothing
+        },
+        error(e: Error): void {
+            // nothing
+        },
+        complete(): void {
             // nothing
         },
     };
@@ -26,12 +39,14 @@ describe('Observable', (): void => {
 
     beforeEach((): void => {
         subscriberCalled = false;
+        subscriberCalledCount = 0;
 
-        subscriber = (o: SafeObserver<boolean>): Subscription => {
+        subscriber = (o: SafeObserver<number>): Subscription => {
             safeObserver = o;
             subscriberCalled = true;
+            subscriberCalledCount += 1;
 
-            next = (v: boolean): void => {
+            next = (v: number): void => {
                 o.next(v);
             };
 
@@ -46,7 +61,7 @@ describe('Observable', (): void => {
             return subscription;
         };
 
-        observable = new Observable<boolean>(subscriber);
+        observable = new Observable<number>(subscriber);
     });
 
     describe('constructor', (): void => {
@@ -72,50 +87,84 @@ describe('Observable', (): void => {
         });
 
         it('when the data source emits a value, that value is passed to the next method of the observer', (): void => {
+            const nextSpy: jasmine.Spy = spyOn(observer, 'next');
+
             observable.subscribe(observer);
+            next(9);
 
-            // the safeobserver is set after subscribe call
-            const nextSpy: jasmine.Spy = spyOn(safeObserver, 'next');
-            next(true);
-
-            expect(nextSpy).toHaveBeenCalledWith(true);
+            expect(nextSpy).toHaveBeenCalledWith(9);
         });
 
         it('when finished doesn\'t receive new values via next', (): void => {
+            const nextSpy: jasmine.Spy = spyOn(observer, 'next');
+
             observable.subscribe(observer);
-
-            // the safeobserver is set after subscribe call
-            const nextSpy: jasmine.Spy = spyOn(safeObserver, 'next');
             complete();
-            next(false);
+            next(88);
 
-            expect(nextSpy).toHaveBeenCalled();
+            expect(nextSpy).not.toHaveBeenCalled();
         });
 
         it('when unsubscribed doesn\'t receive new values via next', (): void => {
-            observable.subscribe(observer);
+            const nextSpy: jasmine.Spy = spyOn(observer, 'next');
+            const s: Subscription = observable.subscribe(observer);
 
-            // the safeobserver is set after subscribe call
-            const nextSpy: jasmine.Spy = spyOn(safeObserver, 'next');
-            subscription.unsubscribe();
-            next(false);
+            s.unsubscribe();
+            next(34);
 
-            expect(nextSpy).toHaveBeenCalled();
+            expect(nextSpy).not.toHaveBeenCalled();
         });
 
         it('when an error occurs the error method is called', (): void => {
-            observable.subscribe(observer);
-
-            // the safeobserver is set after subscribe call
-            const errorSpy: jasmine.Spy = spyOn(safeObserver, 'error');
+            const errorSpy: jasmine.Spy = spyOn(observer, 'error');
             const e: Error = new Error('?');
+
+            observable.subscribe(observer);
             error(e);
 
             expect(errorSpy).toHaveBeenCalledWith(e);
         });
+
+        it('an observable is unicast, calls the subscriber for each subscription', (): void => {
+            const o2: NextableObserver<number> = {
+                next(v: number): void {
+                    // nothing
+                },
+            };
+            const nextSpy1: jasmine.Spy = spyOn(observer, 'next');
+            const nextSpy2: jasmine.Spy = spyOn(o2, 'next');
+            const s1: Subscription = observable.subscribe(observer);
+            const s2: Subscription = observable.subscribe(o2);
+
+            s1.unsubscribe();
+            next(102);
+
+            expect(subscriberCalledCount).toEqual(2);
+            expect(nextSpy1).not.toHaveBeenCalled();
+            expect(nextSpy2).toHaveBeenCalledWith(102);
+        });
     });
 
     describe('pipe', (): void => {
+        it('applies the given operators to the emitted values', (): void => {
+            const nextSpy: jasmine.Spy = spyOn(observer, 'next');
+            const double: Operator<number, number> = map<number, number>((value: number): number => {
+                return value * 2;
+            });
+            const isMultipleOf3: Operator<number, boolean> = map<number, boolean>((value: number): boolean => {
+                return value % 3 === 0;
+            });
+            const result: Observable<boolean> = observable.pipe(
+                double,
+                isMultipleOf3,
+            );
 
+            result.subscribe(observer);
+
+            next(3);
+            expect(nextSpy).toHaveBeenCalledWith(true);
+            next(16);
+            expect(nextSpy).toHaveBeenCalledWith(false);
+        });
     });
 });

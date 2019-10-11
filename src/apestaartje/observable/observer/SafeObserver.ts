@@ -35,9 +35,9 @@ export class SafeObserver<T> implements Observer<T> {
 
                 throw e2;
             }
-
-            this.unsubscribe();
         }
+
+        this.unsubscribe();
     }
 
     public complete(): void {
@@ -51,9 +51,9 @@ export class SafeObserver<T> implements Observer<T> {
 
                 throw err;
             }
-
-            this.unsubscribe();
         }
+
+        this.unsubscribe();
     }
 
     /**

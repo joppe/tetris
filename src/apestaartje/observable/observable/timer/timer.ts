@@ -3,7 +3,7 @@ import { SafeObserver } from '../../observer/SafeObserver';
 import { Subscription } from '../Subscription';
 import { Timer } from '../../data-source/timer/Timer';
 
-export function timer(duration: number): Observable<number> {
+export function timer(duration: number, delay: number = 1000): Observable<number> {
     return new Observable<number>((observer: SafeObserver<number>): Subscription => {
         // Our data source coupled to our observer.
         const t: Timer = new Timer(
@@ -16,6 +16,7 @@ export function timer(duration: number): Observable<number> {
                 },
             },
             duration,
+            delay,
         );
 
         return {

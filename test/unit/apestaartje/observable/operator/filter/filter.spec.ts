@@ -1,9 +1,9 @@
 import { filter } from '@apestaartje/observable/operator/filter/filter';
-import { Operator } from '@apestaartje/observable/operator/Operator';
 import { Observable } from '@apestaartje/observable/observable/Observable';
-import { Subscription } from '@apestaartje/observable/observable/Subscription';
-import { Subscriber } from '@apestaartje/observable/observable/Subscriber';
+import { Operator } from '@apestaartje/observable/operator/Operator';
 import { SafeObserver } from '@apestaartje/observable/observer/SafeObserver';
+import { Subscriber } from '@apestaartje/observable/observable/Subscriber';
+import { Subscription } from '@apestaartje/observable/observable/Subscription';
 
 type NextableObserver<T> = { next(v: T): void };
 type ErrorableObserver<T> = { error(e: Error): void };

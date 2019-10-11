@@ -64,10 +64,6 @@ export class Subject<T> extends Observable<T> {
 
     private unsbuscribeObserver(observer: SafeObserver<T>): void {
         this._observers = this._observers.filter((o: SafeObserver<T>): boolean => {
-            if (o === observer) {
-                o.unsubscribe();
-            }
-
             return o !== observer;
         });
 

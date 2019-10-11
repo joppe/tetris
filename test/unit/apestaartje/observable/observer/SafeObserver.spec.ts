@@ -61,7 +61,7 @@ describe('SafeObserver', (): void => {
 
         it('if error method is defined, call it with the given error and unsubscribe', (): void => {
             const o: ErrorableObserver<number> = {
-                error(e: Error): void {
+                error(err: Error): void {
                     // nothing
                 },
             };
