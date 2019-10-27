@@ -1,6 +1,6 @@
 import { Container as DIContainer } from '@apestaartje/dependency-injection/container/Container';
+import { factory } from '@apestaartje/dependency-injection/container/factory';
 import { Inject } from '@apestaartje/dependency-injection/decorator/Inject';
-import { factory } from '@apestaartje/dependency-injection/factory';
 
 describe('Inject', (): void => {
     it('resolve value from di container', (): void => {

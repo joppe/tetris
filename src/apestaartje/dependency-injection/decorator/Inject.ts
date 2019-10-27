@@ -2,7 +2,7 @@ import { args } from '@apestaartje/function/args';
 import { Constructor } from '@apestaartje/types/Constructor';
 
 import { Container } from '../container/Container';
-import { factory } from '../factory';
+import { factory } from '../container/factory';
 
 const CONSTRUCTOR_NAME: string = 'name';
 

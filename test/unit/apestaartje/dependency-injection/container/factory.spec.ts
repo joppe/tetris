@@ -1,5 +1,5 @@
 import { Container } from '@apestaartje/dependency-injection/container/Container';
-import { factory } from '@apestaartje/dependency-injection/factory';
+import { factory } from '@apestaartje/dependency-injection/container/factory';
 
 describe('dependency injection factory', (): void => {
     it('create only once a container', (): void => {
