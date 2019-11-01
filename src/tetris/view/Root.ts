@@ -1,3 +1,4 @@
+import { ChildElements } from '@apestaartje/dom/dist/custom-element/decorator/child-element';
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
 import { factory } from '@apestaartje/finite-state-machine/dist/machine/factory';
 import { Machine } from '@apestaartje/finite-state-machine/dist/machine/Machine';
@@ -15,7 +16,6 @@ import '@tetris/view/pages/HighscorePage';
 
 import { config } from '@tetris/finite-state-machine/config';
 import { State } from '@tetris/finite-state-machine/State';
-import { ChildElements } from '@apestaartje/dom/dist/custom-element/decorator/child-element';
 
 @Component({
     selector: 'tetris-root',
@@ -39,7 +39,7 @@ export class Root extends HTMLElement {
     public pages: HTMLElement[];
 
     private _currentPage: string = config.initial;
-    private _state: Machine;
+    private readonly _state: Machine;
 
     constructor() {
         super();
