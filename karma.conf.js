@@ -53,10 +53,15 @@ module.exports = function (config) {
                 }
             },
             compilerOptions: {
+                module: 'commonjs',
+                paths: {
+                    "@tetris/*": [
+                        "./src/tetris/*"
+                    ]
+                },
                 sourceMap: true
             },
             tsconfig: './tsconfig.json'
-
         },
 
         port: 9876,

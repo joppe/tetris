@@ -45,5 +45,16 @@
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@apestaartje/animation": "^2.0.0",
+    "@apestaartje/color": "^1.0.1",
+    "@apestaartje/dependency-injection": "^2.0.0",
+    "@apestaartje/dom": "^1.2.0",
+    "@apestaartje/finite-state-machine": "^1.0.0",
+    "@apestaartje/function": "^1.1.0",
+    "@apestaartje/geometry": "^1.4.1",
+    "@apestaartje/observable": "^1.0.0",
+    "@apestaartje/store": "^1.0.0",
+    "@apestaartje/types": "^1.0.1"
+  }
 }
