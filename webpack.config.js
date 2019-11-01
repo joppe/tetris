@@ -50,7 +50,6 @@ const config = {
     },
     resolve: {
         alias: {
-            '@apestaartje': path.resolve(__dirname, 'src/apestaartje'),
             '@tetris': path.resolve(__dirname, 'src/tetris')
         },
         extensions: ['.tsx', '.ts', '.js']

@@ -1,6 +1,6 @@
 # Tetris
 
-[![Build Status](https://travis-ci.org/joppe/tetris.svg?branch=master)](https://travis-ci.org/joppe/tetris) [![Coverage Status](https://coveralls.io/repos/github/joppe/tetris/badge.svg?branch=master)](https://coveralls.io/github/joppe/tetris?branch=master)
+[![Build Status](https://travis-ci.org/joppe/tetris.svg?branch=master)](https://travis-ci.org/joppe/tetris)
 
 ## Introduction
 
