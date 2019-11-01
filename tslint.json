@@ -12,6 +12,7 @@
           "never-prefix"
       ],
       "missing-jsdoc": false,
+      "no-backbone-get-set-outside-model": false,
       "no-implicit-dependencies": false,
       "no-relative-imports": false,
       "no-reserved-keywords": false,
