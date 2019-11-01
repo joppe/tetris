@@ -1,5 +1,5 @@
 // tslint:disable-next-line no-import-side-effect
-import '@tetris/components/Root';
+import '@tetris/view/Root';
 
 const container: HTMLDivElement = document.createElement('div');
 
