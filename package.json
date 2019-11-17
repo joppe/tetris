@@ -5,7 +5,9 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --port 1234 --content-base public/",
-    "lint": "tslint --config ./tslint.json --project tsconfig.json"
+    "lint": "tslint --config ./tslint.json --project tsconfig.json",
+    "test": "karma start karma.conf.js",
+    "test:watch": "karma start karma.conf.js --no-single-run --auto-watch"
   },
   "repository": {
     "type": "git",
@@ -20,8 +22,16 @@
     "TypeScript"
   ],
   "devDependencies": {
+    "@types/jasmine": "^3.4.5",
     "autoprefixer": "^9.6.1",
+    "coveralls": "^3.0.7",
     "css-loader": "^3.1.0",
+    "jasmine-core": "^3.5.0",
+    "karma": "^4.4.1",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^2.0.1",
+    "karma-typescript": "^4.1.1",
+    "karma-typescript-es6-transform": "^4.1.1",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
@@ -30,19 +40,21 @@
     "ts-loader": "^6.0.4",
     "tslint": "^5.18.0",
     "tslint-microsoft-contrib": "^6.2.0",
-    "typescript": "^3.5.3",
+    "typescript": "^3.7.2",
     "webpack": "^4.36.1",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
     "@apestaartje/animation": "^2.0.0",
-    "@apestaartje/color": "^1.0.1",
+    "@apestaartje/array": "^1.2.1",
+    "@apestaartje/color": "^1.1.0",
     "@apestaartje/dependency-injection": "^2.0.0",
     "@apestaartje/dom": "^1.2.1",
     "@apestaartje/finite-state-machine": "^1.0.0",
     "@apestaartje/function": "^1.1.0",
     "@apestaartje/geometry": "^1.4.1",
+    "@apestaartje/number": "^1.5.0",
     "@apestaartje/observable": "^1.0.0",
     "@apestaartje/store": "^1.0.0",
     "@apestaartje/types": "^1.0.1"

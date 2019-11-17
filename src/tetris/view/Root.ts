@@ -1,25 +1,27 @@
 import { ChildElements } from '@apestaartje/dom/dist/custom-element/decorator/child-element';
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
-import { factory } from '@apestaartje/finite-state-machine/dist/machine/factory';
+import { factory as stateFactory } from '@apestaartje/finite-state-machine/dist/machine/factory';
 import { Machine } from '@apestaartje/finite-state-machine/dist/machine/Machine';
-
-// tslint:disable-next-line no-import-side-effect
-import '@tetris/view/component/PageContainer';
-// tslint:disable-next-line no-import-side-effect
-import '@tetris/view/pages/HomePage';
-// tslint:disable-next-line no-import-side-effect
-import '@tetris/view/pages/GamePage';
-// tslint:disable-next-line no-import-side-effect
-import '@tetris/view/pages/HelpPage';
-// tslint:disable-next-line no-import-side-effect
-import '@tetris/view/pages/HighscorePage';
+import { Store } from '@apestaartje/store/dist/Store';
 
 import { config } from '@tetris/finite-state-machine/config';
+import { Data } from '@tetris/store/Data';
 import { State } from '@tetris/finite-state-machine/State';
+import { container } from '@tetris/dependency-injection/container';
+
+// tslint:disable no-import-side-effect
+import '@tetris/view/component/PageContainer';
+import '@tetris/view/component/Preview';
+import '@tetris/view/pages/GamePage';
+import '@tetris/view/pages/HelpPage';
+import '@tetris/view/pages/HighscorePage';
+import '@tetris/view/pages/HomePage';
+// tslint:enable no-import-side-effect
 
 @Component({
     selector: 'tetris-root',
     template: `
+        <tetris-preview></tetris-preview>
         <tetris-page-container data-page="${State.Home}" active="true">
             <tetris-home></tetris-home>
         </tetris-page-container>
@@ -40,11 +42,13 @@ export class Root extends HTMLElement {
 
     private _currentPage: string = config.initial;
     private readonly _state: Machine;
+    private readonly _store: Store<Data>;
 
-    constructor() {
+    public constructor() {
         super();
 
-        this._state = factory(config);
+        this._state = stateFactory(config);
+        this._store = container.resolve<Store<Data>>('store');
     }
 
     public connectedCallback(): void {
