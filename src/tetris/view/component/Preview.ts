@@ -19,11 +19,11 @@ import { Tetromino } from '@tetris/tetromino/Tetromino';
     `,
 })
 export class Preview extends HTMLElement {
-    private _canvas: Canvas;
-    private _store: Store<Data>;
-
     @ChildElement('div')
     public container: HTMLElement | null;
+
+    private _canvas: Canvas;
+    private _store: Store<Data>;
 
     public connectedCallback(): void {
         this._canvas = new Canvas({

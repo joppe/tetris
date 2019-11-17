@@ -19,5 +19,5 @@ document.addEventListener('click', (): void => {
 });
 
 document.body.appendChild(
-    document.createElement('tetris-root')
+    document.createElement('tetris-root'),
 );
