@@ -21,19 +21,20 @@ import '@tetris/view/pages/HomePage';
 @Component({
     selector: 'tetris-root',
     template: `
-        <tetris-preview></tetris-preview>
-        <tetris-page-container data-page="${State.Home}" active="true">
-            <tetris-home></tetris-home>
-        </tetris-page-container>
-        <tetris-page-container data-page="${State.Game}" active="false">
-            <tetris-game></tetris-game>
-        </tetris-page-container>
-        <tetris-page-container data-page="${State.Help}" active="false">
-            <tetris-help></tetris-help>
-        </tetris-page-container>
-        <tetris-page-container data-page="${State.HighScore}" active="false">
-            <tetris-highscore></tetris-highscore>
-        </tetris-page-container>
+        <div class="container">
+            <tetris-page-container data-page="${State.Home}" active="true">
+                <tetris-home></tetris-home>
+            </tetris-page-container>
+            <tetris-page-container data-page="${State.Game}" active="false">
+                <tetris-game></tetris-game>
+            </tetris-page-container>
+            <tetris-page-container data-page="${State.Help}" active="false">
+                <tetris-help></tetris-help>
+            </tetris-page-container>
+            <tetris-page-container data-page="${State.HighScore}" active="false">
+                <tetris-highscore></tetris-highscore>
+            </tetris-page-container>
+        </div>
     `,
 })
 export class Root extends HTMLElement {
