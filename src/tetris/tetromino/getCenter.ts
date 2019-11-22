@@ -5,8 +5,8 @@ export function getCenter(blocks: Vector[]): Vector {
     const square: Square = blocks.reduce(
         (acc: Square, point: Vector): Square => {
             return {
-                topLeft: { x: Math.min(acc.topLeft.x, point.x), y: Math.min(acc.topLeft.x, point.x) },
-                bottomRight: { x: Math.max(acc.topLeft.x, point.x), y: Math.max(acc.topLeft.x, point.x) },
+                topLeft: { x: Math.min(acc.topLeft.x, point.x), y: Math.min(acc.topLeft.y, point.y) },
+                bottomRight: { x: Math.max(acc.bottomRight.x, point.x), y: Math.max(acc.bottomRight.y, point.y) },
             };
         },
         {

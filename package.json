@@ -55,7 +55,7 @@
     "@apestaartje/function": "^1.1.0",
     "@apestaartje/geometry": "^1.4.1",
     "@apestaartje/number": "^1.5.0",
-    "@apestaartje/observable": "^1.0.0",
+    "@apestaartje/observable": "^1.1.0",
     "@apestaartje/store": "^1.0.0",
     "@apestaartje/types": "^1.0.1"
   }

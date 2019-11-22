@@ -1,10 +1,14 @@
-import { Vector } from '@apestaartje/geometry/dist/vector';
-
-import { Tetromino } from '@tetris/tetromino/Tetromino';
+import { TetrominoData } from '@tetris/tetromino/TetrominoData';
+import { Size } from '@apestaartje/geometry/dist/size/Size';
+import { BlockConfig } from './BlockConfig';
+import { Cell } from '@tetris/grid/Cell';
+import { Type } from '@tetris/tetromino/Type';
 
 export interface Data {
-    current: Tetromino;
-    position: Vector;
-    preview: Tetromino;
-    score: number;
+    current: TetrominoData | undefined;
+    next: TetrominoData | undefined;
+    cells: Cell<Type | undefined>[];
+    score: number | undefined;
+    size: Size;
+    block: BlockConfig;
 }
