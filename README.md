@@ -44,7 +44,7 @@ The project will be created in phases.
 - [x] __Observables__ the DOM events that will control the game will be available as streams.
 - [x] A __Store__ to store the state of the game.
 - [x] __Color manipulation__ to create darker and lighter colors from a given color. This will be used to draw the Tetrominos.
-- [ ] __Canvas__ for rendering the game.
+- [x] __Canvas__ for rendering the game.
 
 ## The old project
 
