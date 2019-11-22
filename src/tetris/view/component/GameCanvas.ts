@@ -75,6 +75,7 @@ export class GameCanvas extends HTMLElement {
             this._engine.start();
         } else {
             this._engine.stop();
+            this._engine.reset();
         }
     }
 

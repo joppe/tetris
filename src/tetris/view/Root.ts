@@ -1,4 +1,5 @@
-import { ChildElements } from '@apestaartje/dom/dist/custom-element/decorator/child-element';
+import { ChildElement } from '@apestaartje/dom/dist/custom-element/decorator/child-element/ChildElement';
+import { ChildElements } from '@apestaartje/dom/dist/custom-element/decorator/child-element/ChildElements';
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
 import { factory as stateFactory } from '@apestaartje/finite-state-machine/dist/machine/factory';
 import { Machine } from '@apestaartje/finite-state-machine/dist/machine/Machine';
@@ -41,6 +42,9 @@ export class Root extends HTMLElement {
     @ChildElements('[data-page]')
     public pages: HTMLElement[];
 
+    @ChildElement('tetris-game-page')
+    public gamePage: HTMLElement;
+
     private _currentState: string = config.initial;
     private readonly _state: Machine;
     private readonly _store: Store<Data>;
@@ -74,5 +78,11 @@ export class Root extends HTMLElement {
                 page.setAttribute('active', 'false');
             }
         });
+
+        if (this._currentState === State.Game) {
+            this.gamePage.setAttribute('active', 'true');
+        } else {
+            this.gamePage.setAttribute('active', 'false');
+        }
     }
 }

@@ -18,7 +18,7 @@ import { Subject } from '@apestaartje/observable/dist/subject';
 
 export class Engine {
     private _current: Tetromino;
-    private _interval: number;
+    private _interval: number | undefined;
     private _next: Tetromino | undefined;
     private _subscription: Subscription;
     private readonly _control: Control;
@@ -60,6 +60,15 @@ export class Engine {
         );
     }
 
+    public reset(): void {
+        this._next = undefined;
+
+        this._store.set('next', undefined);
+        this._store.set('current', undefined);
+        this._store.set('score', 0);
+        this._store.set('cells', []);
+    }
+
     public stop(): void {
         if (this._interval === undefined) {
             return;
@@ -67,6 +76,7 @@ export class Engine {
 
         this._subscription.unsubscribe();
         window.clearInterval(this._interval);
+        this._interval = undefined;
     }
 
     private onAction(action: Action): void {
