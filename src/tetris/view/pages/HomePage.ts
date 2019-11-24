@@ -1,7 +1,8 @@
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
 
-// tslint:disable-next-line no-import-side-effect
+// tslint:disable no-import-side-effect
 import '@tetris/view/component/NavigationLink';
+// tslint:enable no-import-side-effect
 
 import { Event } from '@tetris/finite-state-machine/global/Event';
 

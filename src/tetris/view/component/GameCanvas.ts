@@ -4,19 +4,19 @@ import { EventEmitter } from '@apestaartje/dom/dist/custom-element/decorator/out
 import { Input } from '@apestaartje/dom/dist/custom-element/decorator/input/Input';
 import { InputType } from '@apestaartje/dom/dist/custom-element/decorator/input/InputType';
 import { Output } from '@apestaartje/dom/dist/custom-element/decorator/output/Output';
-import { Size } from '@apestaartje/geometry/dist/size';
+import { Size } from '@apestaartje/geometry/dist/size/Size';
 import { Store } from '@apestaartje/store/dist/Store';
-import { Vector } from '@apestaartje/geometry/dist/vector';
+import { Vector } from '@apestaartje/geometry/dist/vector/Vector';
 
 import { block as renderBlock } from '@tetris/view/canvas/block';
 import { BlockConfig } from '@tetris/store/BlockConfig';
 import { Cell } from '@tetris/grid/Cell';
 import { container } from '@tetris/dependency-injection/container';
 import { Data } from '@tetris/store/Data';
+import { Engine } from '@tetris/game/Engine';
 import { getColor } from '@tetris/view/tetromino/getColor';
 import { TetrominoData } from '@tetris/tetromino/TetrominoData';
 import { Type } from '@tetris/tetromino/Type';
-import { Engine } from '@tetris/game/Engine';
 
 @Component({
     selector: 'tetris-game-canvas',

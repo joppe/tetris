@@ -1,5 +1,6 @@
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
-import { Input, InputType } from '@apestaartje/dom/dist/custom-element/decorator/input';
+import { Input } from '@apestaartje/dom/dist/custom-element/decorator/input/Input';
+import { InputType } from '@apestaartje/dom/dist/custom-element/decorator/input/InputType';
 
 @Component({
     selector: 'tetris-page-container',

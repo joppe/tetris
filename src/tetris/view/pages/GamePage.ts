@@ -1,20 +1,20 @@
+import { ChildElement } from '@apestaartje/dom/dist/custom-element/decorator/child-element/ChildElement';
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
+import { factory as stateFactory } from '@apestaartje/finite-state-machine/dist/machine/factory';
 import { Input } from '@apestaartje/dom/dist/custom-element/decorator/input/Input';
 import { InputType } from '@apestaartje/dom/dist/custom-element/decorator/input/InputType';
-import { factory as stateFactory } from '@apestaartje/finite-state-machine/dist/machine';
-import { ChildElement } from '@apestaartje/dom/dist/custom-element/decorator/child-element';
 import { Machine } from '@apestaartje/finite-state-machine/dist/machine/Machine';
 
 // tslint:disable no-import-side-effect
-import '@tetris/view/component/NavigationLink';
 import '@tetris/view/component/CountDown';
 import '@tetris/view/component/GameCanvas';
 import '@tetris/view/component/GameOver';
+import '@tetris/view/component/NavigationLink';
 // tslint:enable no-import-side-effect
 
-import { Event as GlobalEvent} from '@tetris/finite-state-machine/global/Event';
 import { config } from '@tetris/finite-state-machine/game/config';
 import { Event as GameEvent } from '@tetris/finite-state-machine/game/Event';
+import { Event as GlobalEvent} from '@tetris/finite-state-machine/global/Event';
 import { State as GameState } from '@tetris/finite-state-machine/game/State';
 
 @Component({

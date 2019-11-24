@@ -1,7 +1,8 @@
-import { TetrominoData } from '@tetris/tetromino/TetrominoData';
 import { Size } from '@apestaartje/geometry/dist/size/Size';
-import { BlockConfig } from './BlockConfig';
+
+import { BlockConfig } from '@tetris/store/BlockConfig';
 import { Cell } from '@tetris/grid/Cell';
+import { TetrominoData } from '@tetris/tetromino/TetrominoData';
 import { Type } from '@tetris/tetromino/Type';
 
 export interface Data {

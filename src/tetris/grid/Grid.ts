@@ -1,9 +1,9 @@
 import { Point } from '@apestaartje/geometry/dist/point';
+import { range } from '@apestaartje/array/dist/iterator';
 import { Size } from '@apestaartje/geometry/dist/size';
+import { Vector } from '@apestaartje/geometry/dist/vector';
 
 import { Cell } from '@tetris/grid/Cell';
-import { range } from '@apestaartje/array/dist/iterator';
-import { Vector } from '@apestaartje/geometry/dist/vector';
 
 export class Grid<T> {
     private readonly _size: Size;

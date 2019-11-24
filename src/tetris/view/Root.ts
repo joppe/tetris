@@ -5,11 +5,6 @@ import { factory as stateFactory } from '@apestaartje/finite-state-machine/dist/
 import { Machine } from '@apestaartje/finite-state-machine/dist/machine/Machine';
 import { Store } from '@apestaartje/store/dist/Store';
 
-import { config } from '@tetris/finite-state-machine/global/config';
-import { container } from '@tetris/dependency-injection/container';
-import { Data } from '@tetris/store/Data';
-import { State } from '@tetris/finite-state-machine/global/State';
-
 // tslint:disable no-import-side-effect
 import '@tetris/view/component/PageContainer';
 import '@tetris/view/component/Preview';
@@ -18,6 +13,11 @@ import '@tetris/view/pages/HelpPage';
 import '@tetris/view/pages/HighscorePage';
 import '@tetris/view/pages/HomePage';
 // tslint:enable no-import-side-effect
+
+import { config } from '@tetris/finite-state-machine/global/config';
+import { container } from '@tetris/dependency-injection/container';
+import { Data } from '@tetris/store/Data';
+import { State } from '@tetris/finite-state-machine/global/State';
 
 @Component({
     selector: 'tetris-root',

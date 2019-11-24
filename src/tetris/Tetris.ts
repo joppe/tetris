@@ -1,15 +1,15 @@
 import { factory } from '@apestaartje/store/dist/factory';
 import { Store } from '@apestaartje/store/dist/Store';
 
-import { container } from '@tetris/dependency-injection/container';
-import { Data } from '@tetris/store/Data';
-import { Engine } from './game/Engine';
-import { initial } from '@tetris/store/initial';
-import { keyboard } from './control/keyboard';
-
 // tslint:disable no-import-side-effect
 import '@tetris/view/Root';
 // tslint:enable no-import-side-effect
+
+import { container } from '@tetris/dependency-injection/container';
+import { Data } from '@tetris/store/Data';
+import { Engine } from '@tetris/game/Engine';
+import { initial } from '@tetris/store/initial';
+import { keyboard } from '@tetris/control/keyboard';
 
 export class Tetris {
     public constructor() {

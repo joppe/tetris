@@ -1,7 +1,8 @@
-import { ChildElement } from '@apestaartje/dom/dist/custom-element/decorator/child-element';
+import { ChildElement } from '@apestaartje/dom/dist/custom-element/decorator/child-element/ChildElement';
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
-import { EventEmitter, Output } from '@apestaartje/dom/dist/custom-element/decorator/output';
-import { Input } from '@apestaartje/dom/dist/custom-element/decorator/input';
+import { EventEmitter} from '@apestaartje/dom/dist/custom-element/decorator/output/EventEmitter';
+import { Input } from '@apestaartje/dom/dist/custom-element/decorator/input/Input';
+import { Output } from '@apestaartje/dom/dist/custom-element/decorator/output/Output';
 
 @Component({
    selector: 'tetris-navigation-link',

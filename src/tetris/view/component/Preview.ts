@@ -1,15 +1,14 @@
-import { Canvas } from '@apestaartje/dom/dist/element';
-import { ChildElement } from '@apestaartje/dom/dist/custom-element/decorator/child-element';
+import { Canvas } from '@apestaartje/dom/dist/element/Canvas';
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
 import { Store } from '@apestaartje/store/dist/Store';
-import { Vector } from '@apestaartje/geometry/dist/vector';
+import { Vector } from '@apestaartje/geometry/dist/vector/Vector';
 
 import { block as renderBlock } from '@tetris/view/canvas/block';
+import { BlockConfig } from '@tetris/store/BlockConfig';
 import { container } from '@tetris/dependency-injection/container';
 import { Data } from '@tetris/store/Data';
 import { getColor } from '@tetris/view/tetromino/getColor';
 import { TetrominoData } from '@tetris/tetromino/TetrominoData';
-import { BlockConfig } from '@tetris/store/BlockConfig';
 
 @Component({
     selector: 'tetris-preview',

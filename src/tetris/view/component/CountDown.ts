@@ -1,7 +1,8 @@
+import { ChildElements } from '@apestaartje/dom/dist/custom-element/decorator/child-element/ChildElements';
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
-import { ChildElements } from '@apestaartje/dom/dist/custom-element/decorator/child-element';
-import { Input, InputType } from '@apestaartje/dom/dist/custom-element/decorator/input';
 import { EventEmitter, Output } from '@apestaartje/dom/dist/custom-element/decorator/output';
+import { Input } from '@apestaartje/dom/dist/custom-element/decorator/input/Input';
+import { InputType } from '@apestaartje/dom/dist/custom-element/decorator/input/InputType';
 
 const ANIMATE_CLASS: string = 'animate';
 const ACTIVE_CLASS: string = 'active';

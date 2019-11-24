@@ -9,12 +9,12 @@ import { container } from '@tetris/dependency-injection/container';
 import { Control } from '@tetris/control/Control';
 import { Data } from '@tetris/store/Data';
 import { Grid } from '@tetris/grid/Grid';
+import { Observable } from '@apestaartje/observable/dist/observable';
 import { random } from '@tetris/tetromino/random/random';
+import { Subject } from '@apestaartje/observable/dist/subject';
 import { Tetromino } from '@tetris/tetromino/Tetromino';
 import { TetrominoData } from '@tetris/tetromino/TetrominoData';
 import { Type } from '@tetris/tetromino/Type';
-import { Observable } from '@apestaartje/observable/dist/observable';
-import { Subject } from '@apestaartje/observable/dist/subject';
 
 export class Engine {
     private _current: Tetromino;

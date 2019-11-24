@@ -2,19 +2,19 @@ import { Observable } from '@apestaartje/observable/dist/observable/Observable';
 import { SafeObserver } from '@apestaartje/observable/dist/observer/SafeObserver';
 import { Subscription } from '@apestaartje/observable/dist/observable/Subscription';
 
-import { Action } from './Action';
-import { Control } from './Control';
+import { Action } from '@tetris/control/Action';
+import { Control } from '@tetris/control/Control';
 
-const CLOCKWISE: number = 65;
-const COUNTER_CLOCKWISE: number = 83;
-const DOWN: number = 40;
-const LEFT: number = 37;
-const RIGHT: number = 39;
+const CLOCKWISE: string = 's';
+const COUNTER_CLOCKWISE: string = 'a';
+const DOWN: string = 'ArrowDown';
+const LEFT: string = 'ArrowLeft';
+const RIGHT: string = 'ArrowRight';
 
 export function keyboard(): Control {
     return new Observable<Action>((observer: SafeObserver<Action>): Subscription => {
         function handle(event: KeyboardEvent): void {
-            switch (event.which) {
+            switch (event.key) {
                 case LEFT:
                     observer.next(Action.Left);
                     break;
@@ -30,8 +30,6 @@ export function keyboard(): Control {
                 case DOWN:
                     observer.next(Action.Down);
                     break;
-                default:
-                    // nothing
             }
         }
 
