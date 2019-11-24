@@ -24,7 +24,7 @@ export class Engine {
     private readonly _control: Control;
     private readonly _grid: Grid<Type>;
     private readonly _size: Size;
-    private readonly _speed: number = 100;
+    private readonly _speed: number = 1000;
     private readonly _store: Store<Data>;
     private readonly _gameOver: Subject<boolean> = new Subject();
 

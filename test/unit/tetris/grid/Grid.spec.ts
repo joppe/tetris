@@ -24,7 +24,7 @@ describe('Grid', (): void => {
         it('set the value of a cell', (): void => {
             grid.setCell({ x: 2, y: 3 }, 99);
 
-            expect(grid.getCell({ x: 2, y: 3 }).value).toBe(99);
+            expect(grid.getCell({ x: 2, y: 3 })!.value).toBe(99);
 
         });
     });
