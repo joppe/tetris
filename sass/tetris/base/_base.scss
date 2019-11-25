@@ -4,14 +4,16 @@ body {
 }
 
 h1 {
+    padding-bottom: 30px;
     font-size: 24px;
     color: $red--kenyan-copper;
     text-align: center;
-    padding-bottom: 30px;
 }
 
 h2 {
-    font-size: 20px;
+    // padding-bottom: 10px;
+    font-size: 18px;
+    color: $red--kenyan-copper;
 }
 
 p {

@@ -1,10 +1,10 @@
 import { States } from '@apestaartje/finite-state-machine/dist/state/States';
 
-import { Event } from '@tetris/finite-state-machine/Event';
-import { State } from '@tetris/finite-state-machine/State';
+import { Event } from '@tetris/finite-state-machine/global/Event';
+import { State } from '@tetris/finite-state-machine/global/State';
 
 export const config: States = {
-    initial: State.Home,
+    initial: State.Game,
     states: {
         [State.Home]: {
             on: {

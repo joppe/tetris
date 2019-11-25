@@ -1,16 +1,17 @@
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
 
-// tslint:disable-next-line no-import-side-effect
+// tslint:disable no-import-side-effect
 import '@tetris/view/component/NavigationLink';
+// tslint:enable no-import-side-effect
 
-import { Event } from '@tetris/finite-state-machine/Event';
+import { Event } from '@tetris/finite-state-machine/global/Event';
 
 @Component({
-    selector: 'tetris-home',
+    selector: 'tetris-home-page',
     template: `
         <h1>TETЯIS</h1>
 
-        <p>This is just an experiment :).</p>
+        <p>This is just an experiment :)</p>
 
         <nav>
             <tetris-navigation-link event-name="${Event.Game}" title="Start"></tetris-navigation-link>

@@ -1,0 +1,22 @@
+tetris-game-canvas {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+
+    canvas {
+        border: 1px solid $black;
+        border-radius: 5px;
+
+        &.foreground {
+            position: relative;
+            z-index: 10;
+            background-color: transparent;
+        }
+
+        &.background {
+            position: absolute;
+            z-index: 5;
+            background-color: $white;
+        }
+    }
+}

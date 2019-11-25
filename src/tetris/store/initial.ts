@@ -1,9 +1,13 @@
 import { Data } from '@tetris/store/Data';
-import { random } from '@tetris/tetromino/random/random';
 
 export const initial: Data = {
-    current: random(),
-    position: { x: 0, y: 0 },
-    preview: random(),
-    score: 0,
+    current: undefined,
+    next: undefined,
+    score: undefined,
+    size: { width: 10, height: 24 },
+    cells: [],
+    block: {
+        size: 20,
+        line: 3,
+    },
 };

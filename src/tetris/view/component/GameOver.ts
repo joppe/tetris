@@ -2,31 +2,33 @@ import { Component } from '@apestaartje/dom/dist/custom-element/decorator/compon
 import { Input } from '@apestaartje/dom/dist/custom-element/decorator/input/Input';
 import { InputType } from '@apestaartje/dom/dist/custom-element/decorator/input/InputType';
 
+const ACTIVE_CLASS: string = 'active';
+
 @Component({
-    selector: 'tetris-page-container',
+    selector: 'tetris-game-over',
     template: `
-        <slot></slot>
+        <h3>GAME OVER</h3>
     `,
 })
-export class PageContainer extends HTMLElement {
+export class GameOver extends HTMLElement {
     @Input({
-        type: InputType.Bool,
         attribute: 'active',
         watch: true,
+        type: InputType.Bool,
     })
-    public isActive: boolean;
+    public active: boolean;
 
     public attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
         if (name === 'active') {
-            this.updateVisibility();
+            this.toggle();
         }
     }
 
-    private updateVisibility(): void {
-        if (this.isActive) {
-            this.style.display = 'block';
+    private toggle(): void {
+        if (this.active === true) {
+            this.classList.add(ACTIVE_CLASS);
         } else {
-            this.style.display = 'none';
+            this.classList.remove(ACTIVE_CLASS);
         }
     }
 }

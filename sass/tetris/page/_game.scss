@@ -1,0 +1,24 @@
+tetris-game-page {
+    display: grid;
+    grid-template-columns: 202px 1fr;
+    grid-gap: 20px;
+    grid-template-areas:
+        'header header'
+        'game preview'
+        'game score'
+        'footer footer';
+
+
+    h1 {
+        grid-area: header;
+    }
+
+    main {
+        position: relative;
+        grid-area: game;
+    }
+
+    nav {
+        grid-area: footer;
+    }
+}
