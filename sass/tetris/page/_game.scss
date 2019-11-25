@@ -4,8 +4,7 @@ tetris-game-page {
     grid-gap: 20px;
     grid-template-areas:
         'header header'
-        'game preview'
-        'game score'
+        'game side'
         'footer footer';
 
 
@@ -16,6 +15,10 @@ tetris-game-page {
     main {
         position: relative;
         grid-area: game;
+    }
+
+    aside {
+        grid-area: side;
     }
 
     nav {
