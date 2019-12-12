@@ -10,9 +10,14 @@ import { Data } from '@tetris/store/Data';
 import { Engine } from '@tetris/game/Engine';
 import { initial } from '@tetris/store/initial';
 import { keyboard } from '@tetris/control/keyboard';
+import { Local } from '@tetris/storage/Local';
+import { Storage } from '@tetris/storage/Storage';
 
 export class Tetris {
     public constructor() {
+        container.register('storage', (): Storage => {
+            return new Local();
+        });
         container.register('store', (): Store<Data> => {
             return factory(initial);
         });

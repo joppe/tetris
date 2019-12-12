@@ -1,12 +1,11 @@
 tetris-game-page {
+    position: relative;
     display: grid;
     grid-template-columns: 202px 1fr;
     grid-gap: 20px;
     grid-template-areas:
         'header header'
-        'game side'
-        'footer footer';
-
+        'game side';
 
     h1 {
         grid-area: header;
@@ -19,9 +18,5 @@ tetris-game-page {
 
     aside {
         grid-area: side;
-    }
-
-    nav {
-        grid-area: footer;
     }
 }

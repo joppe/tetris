@@ -3,20 +3,12 @@ $height: 300px;
 tetris-game-over {
     position: absolute;
     z-index: 20;
+    top: 25%;
     display: none;
     width: 100%;
     text-align: center;
 
     &.active {
         display: block;
-    }
-
-    h3 {
-        padding: 8px 10px;
-        background-color: $red--geraldine;
-        color: $red--kenyan-copper;
-        font-size: 24px;
-        font-weight: bold;
-        line-height: 1.2;
     }
 }

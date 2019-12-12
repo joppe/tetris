@@ -8,7 +8,19 @@ const ACTIVE_CLASS: string = 'active';
     selector: 'tetris-game-over',
     template: `
         <h3>GAME OVER</h3>
+        <slot name="nav"></slot>
     `,
+    style: `
+        h3 {
+            padding: 8px 10px;
+            background-color: #E78866;
+            color: #6F2F34;
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+    `,
+    useShadowRoot: true,
 })
 export class GameOver extends HTMLElement {
     @Input({

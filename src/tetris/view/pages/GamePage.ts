@@ -28,17 +28,17 @@ import { State as GameState } from '@tetris/finite-state-machine/game/State';
             <tetris-game-canvas active="false"></tetris-game-canvas>
         </main>
 
-        <tetris-game-over active="false"></tetris-game-over>
+        <tetris-game-over active="false">
+            <nav slot="nav">
+                <tetris-navigation-link event-name="${GlobalEvent.Home}" title="Home"></tetris-navigation-link>
+                <tetris-navigation-link event-name="${GlobalEvent.HighScore}" title="High Score"></tetris-navigation-link>
+            </nav>
+        </tetris-game-over>
 
         <aside>
             <tetris-preview></tetris-preview>
             <tetris-score></tetris-score>
         </aside>
-
-        <nav>
-            <tetris-navigation-link event-name="${GlobalEvent.Home}" title="Home"></tetris-navigation-link>
-            <tetris-navigation-link event-name="${GlobalEvent.HighScore}" title="High Score"></tetris-navigation-link>
-        </nav>
     `,
 })
 export class GamePage extends HTMLElement {
