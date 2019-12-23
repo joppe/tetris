@@ -72,9 +72,9 @@ export class GameCanvas extends HTMLElement {
 
     private toggle(): void {
         if (this.active) {
-            this._engine.reset();
             this._engine.start();
         } else {
+            this._engine.reset();
             this._engine.stop();
         }
     }
