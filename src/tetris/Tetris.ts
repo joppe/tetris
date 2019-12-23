@@ -12,6 +12,7 @@ import { initial } from '@tetris/store/initial';
 import { keyboard } from '@tetris/control/keyboard';
 import { Local } from '@tetris/storage/Local';
 import { Storage } from '@tetris/storage/Storage';
+import { HighScore } from '@tetris/game/high-score/HighScore';
 
 export class Tetris {
     public constructor() {
@@ -23,6 +24,9 @@ export class Tetris {
         });
         container.register('engine', (store: Store<Data>): Engine => {
             return new Engine(store.get('size'), keyboard());
+        });
+        container.register('high-score', (): HighScore => {
+            return new HighScore(10);
         });
     }
 

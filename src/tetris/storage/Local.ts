@@ -1,7 +1,7 @@
 import { Storage } from '@tetris/storage/Storage';
-import { Inject } from '@apestaartje/dependency-injection/dist/decorator/Inject';
+import { Injectable } from '@apestaartje/dependency-injection/dist/decorator/Injectable';
 
-@Inject()
+@Injectable('storage')
 export class Local implements Storage {
     public get<T>(key: string): T {
         const raw: string | null = window.localStorage.getItem(key);
@@ -18,7 +18,7 @@ export class Local implements Storage {
     }
 
     public has(key: string): boolean {
-        return window.localStorage.getItem(key) === null;
+        return window.localStorage.getItem(key) !== null;
     }
 
     public clear(key?: string): void {

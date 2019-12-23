@@ -6,9 +6,21 @@ tetris-game-over {
     top: 25%;
     display: none;
     width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid $red--kenyan-copper;
+    border-radius: 5px;
     text-align: center;
 
     &.active {
         display: block;
     }
+}
+
+.c-game-over__title {
+    padding: 8px 10px;
+    background-color: $red--geraldine;
+    color: $red--kenyan-copper;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.2;
 }
