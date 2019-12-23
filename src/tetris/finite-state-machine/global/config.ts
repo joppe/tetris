@@ -4,7 +4,7 @@ import { Event } from '@tetris/finite-state-machine/global/Event';
 import { State } from '@tetris/finite-state-machine/global/State';
 
 export const config: States = {
-    initial: State.HighScore,
+    initial: State.Home,
     states: {
         [State.Home]: {
             on: {

@@ -30,7 +30,7 @@ export class HighScore {
         };
         const entries: Entry[] = this._entries.concat(entry);
 
-        entries.sort((a: Entry, b: Entry): number => a.score > b.score ? 1 : -1);
+        entries.sort((a: Entry, b: Entry): number => a.score < b.score ? 1 : -1);
 
         this.store(entries);
     }

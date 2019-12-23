@@ -1,3 +1,5 @@
+import { Animator } from '@apestaartje/animation/dist/animator/Animator';
+import { Observable } from '@apestaartje/observable/dist/observable';
 import { Size } from '@apestaartje/geometry/dist/size';
 import { Store } from '@apestaartje/store/dist/Store';
 import { Subscription } from '@apestaartje/observable/dist/observable/Subscription';
@@ -9,22 +11,28 @@ import { container } from '@tetris/dependency-injection/container';
 import { Control } from '@tetris/control/Control';
 import { Data } from '@tetris/store/Data';
 import { Grid } from '@tetris/grid/Grid';
-import { Observable } from '@apestaartje/observable/dist/observable';
 import { random } from '@tetris/tetromino/random/random';
 import { Subject } from '@apestaartje/observable/dist/subject';
 import { Tetromino } from '@tetris/tetromino/Tetromino';
 import { TetrominoData } from '@tetris/tetromino/TetrominoData';
 import { Type } from '@tetris/tetromino/Type';
 
+const INITIAL_SPEED: number = 5;
+const SPEED_INCREMENT: number = 5;
+const MAX_SPEED: number = 60;
+
 export class Engine {
     private _current: Tetromino;
-    private _interval: number | undefined;
+    private _counter: number = 0;
+    private _factor: number;
     private _next: Tetromino | undefined;
+    private _speed: number = INITIAL_SPEED;
     private _subscription: Subscription;
+    private _totalLines: number = 0;
+    private readonly _animator: Animator;
     private readonly _control: Control;
     private readonly _grid: Grid<Type>;
     private readonly _size: Size;
-    private readonly _speed: number = 10;
     private readonly _store: Store<Data>;
     private readonly _gameOver: Subject<boolean> = new Subject();
 
@@ -36,16 +44,25 @@ export class Engine {
         this._size = size;
         this._control = control;
 
+        this._factor = MAX_SPEED - this._speed;
         this._grid = new Grid<Type>(this._size);
         this._store = container.resolve('store');
+        this._animator = new Animator((): boolean => {
+            this._counter += 1;
+
+            if (this._counter % this._factor === 0) {
+                return this.tick();
+            } else {
+                return true;
+            }
+        });
     }
 
     public start(): void {
-        if (this._interval !== undefined) {
+        if (this._animator.isPlaying()) {
             return;
         }
 
-        this._grid.reset();
         this.generate();
 
         this._subscription = this._control.subscribe({
@@ -54,14 +71,14 @@ export class Engine {
             },
         });
 
-        this._interval = window.setInterval(
-            this.tick.bind(this),
-            this._speed,
-        );
+        this._animator.start();
     }
 
     public reset(): void {
         this._next = undefined;
+        this._speed = INITIAL_SPEED;
+        this._counter = 0;
+        this._grid.reset();
 
         this._store.set('next', undefined);
         this._store.set('current', undefined);
@@ -70,13 +87,17 @@ export class Engine {
     }
 
     public stop(): void {
-        if (this._interval === undefined) {
+        if (!this._animator.isPlaying()) {
             return;
         }
 
         this._subscription.unsubscribe();
-        window.clearInterval(this._interval);
-        this._interval = undefined;
+        this._animator.stop();
+    }
+
+    private increaseSpeed(): void {
+        this._speed += SPEED_INCREMENT;
+        this._factor = MAX_SPEED - this._speed;
     }
 
     private onAction(action: Action): void {
@@ -99,19 +120,20 @@ export class Engine {
         }
     }
 
-    private tick(): void {
+    private tick(): boolean {
         if (this.place(this._current.move({ x: 0, y: 1 }))) {
-            return;
+            return true;
         }
 
         this.seal();
 
         if (this.generate()) {
-            return;
+            return true;
         }
 
-        this.stop();
         this._gameOver.next(true);
+
+        return false;
     }
 
     private seal(): void {
@@ -128,6 +150,12 @@ export class Engine {
         if (lines.length > 0) {
             this._store.set('score', <number>this._store.get('score') + (Math.pow(2, lines.length) * 25));
             this._grid.removeLines(lines);
+
+            this._totalLines += 1;
+
+            if (this._totalLines % 5 === 0) {
+                this.increaseSpeed();
+            }
         }
 
         this._store.set('cells', this._grid.getCells());

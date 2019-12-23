@@ -1,11 +1,14 @@
 import { ChildElement } from '@apestaartje/dom/dist/custom-element/decorator/child-element/ChildElement';
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
+import { EventEmitter } from '@apestaartje/dom/dist/custom-element/decorator/output/EventEmitter';
 import { Input } from '@apestaartje/dom/dist/custom-element/decorator/input/Input';
 import { InputType } from '@apestaartje/dom/dist/custom-element/decorator/input/InputType';
+import { Output } from '@apestaartje/dom/dist/custom-element/decorator/output/Output';
 import { Store } from '@apestaartje/store/dist/Store';
 
 import { container } from '@tetris/dependency-injection/container';
 import { Data } from '@tetris/store/Data';
+import { Event as GlobalEvent} from '@tetris/finite-state-machine/global/Event';
 import { HighScore } from '@tetris/game/high-score/HighScore';
 
 @Component({
@@ -37,6 +40,9 @@ export class EnterName extends HTMLElement {
     @ChildElement('b')
     public points: HTMLElement;
 
+    @Output('state-change')
+    public stateChange: EventEmitter<string>;
+
     private readonly _highScore: HighScore;
     private readonly _store: Store<Data>;
     private _isConnected: boolean = false;
@@ -63,7 +69,7 @@ export class EnterName extends HTMLElement {
                 this.name.value,
             );
 
-            this.hide();
+            this.stateChange.emit(GlobalEvent.HighScore);
         });
     }
 

@@ -106,7 +106,7 @@ export class GamePage extends HTMLElement {
                 this.gameCanvas.setAttribute('active', 'true');
                 break;
             case GameState.GameOver:
-                this.gameCanvas.setAttribute('active', 'false');
+                this.gameCanvas.setAttribute('active', 'true');
                 this.countDown.setAttribute('active', 'false');
                 this.gameOver.setAttribute('active', 'true');
                 break;

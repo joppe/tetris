@@ -65,17 +65,17 @@ export class GameCanvas extends HTMLElement {
     }
 
     public attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
-        if (name === 'active') {
+        if (name === 'active' && oldValue !== newValue) {
             this.toggle();
         }
     }
 
     private toggle(): void {
-        if (this.active === true) {
+        if (this.active) {
+            this._engine.reset();
             this._engine.start();
         } else {
             this._engine.stop();
-            this._engine.reset();
         }
     }
 

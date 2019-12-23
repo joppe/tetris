@@ -1,7 +1,9 @@
 import { ChildElement } from '@apestaartje/dom/dist/custom-element/decorator/child-element/ChildElement';
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
+import { EventEmitter } from '@apestaartje/dom/dist/custom-element/decorator/output/EventEmitter';
 import { Input } from '@apestaartje/dom/dist/custom-element/decorator/input/Input';
 import { InputType } from '@apestaartje/dom/dist/custom-element/decorator/input/InputType';
+import { Output } from '@apestaartje/dom/dist/custom-element/decorator/output/Output';
 import { Store } from '@apestaartje/store/dist/Store';
 
 // tslint:disable no-import-side-effect
@@ -22,7 +24,7 @@ const ACTIVE_CLASS: string = 'active';
 
         <tetris-enter-name active="true"></tetris-enter-name>
 
-        <nav slot="nav">
+        <nav>
             <tetris-navigation-link event-name="${GlobalEvent.Home}" title="Home"></tetris-navigation-link>
             <tetris-navigation-link event-name="${GlobalEvent.HighScore}" title="High Score"></tetris-navigation-link>
         </nav>
@@ -38,6 +40,12 @@ export class GameOver extends HTMLElement {
 
     @ChildElement('tetris-enter-name')
     public enterName: HTMLElement;
+
+    @ChildElement('nav')
+    public nav: HTMLElement;
+
+    @Output('state-change')
+    public stateChange: EventEmitter<string>;
 
     private readonly _highScore: HighScore;
     private readonly _store: Store<Data>;
@@ -59,6 +67,7 @@ export class GameOver extends HTMLElement {
         if (this.active) {
             const showEnterName: boolean = this._highScore.isTopScore(this._store.get('score'));
 
+            this.nav.style.display = showEnterName ? 'none' : 'block';
             this.enterName.setAttribute('active', String(showEnterName));
             this.classList.add(ACTIVE_CLASS);
         } else {
