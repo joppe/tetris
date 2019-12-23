@@ -10,7 +10,7 @@ export class Local implements Storage {
             throw new Error(`Could not find "${key}" in local storage.`);
         }
 
-        return JSON.parse(raw);
+        return <T>JSON.parse(raw);
     }
 
     public set<T>(key: string, data: T): void {

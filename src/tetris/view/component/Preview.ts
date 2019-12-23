@@ -39,15 +39,16 @@ export class Preview extends HTMLElement {
         const blockConfig: BlockConfig = this._store.get('block');
         const size: number = blockConfig.size;
 
-        crop(preview.blocks).forEach((block: Vector): void => {
-            renderBlock(
-                this._canvas.context,
-                { x: block.x * size, y: block.y * size },
-                { width: size, height: size },
-                color,
-                blockConfig.line,
-            );
-        });
+        crop(preview.blocks)
+            .forEach((block: Vector): void => {
+                renderBlock(
+                    this._canvas.context,
+                    { x: block.x * size, y: block.y * size },
+                    { width: size, height: size },
+                    color,
+                    blockConfig.line,
+                );
+            });
     }
 
     private addCanvas(): void {

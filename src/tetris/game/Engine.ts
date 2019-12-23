@@ -125,7 +125,7 @@ export class Engine {
             }
         });
 
-        if (lines.length) {
+        if (lines.length > 0) {
             this._store.set('score', <number>this._store.get('score') + (Math.pow(2, lines.length) * 25));
             this._grid.removeLines(lines);
         }

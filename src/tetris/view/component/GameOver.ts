@@ -58,8 +58,8 @@ export class GameOver extends HTMLElement {
     private toggle(): void {
         if (this.active) {
             const showEnterName: boolean = this._highScore.isTopScore(this._store.get('score'));
-            console.log(String(showEnterName));
-            this.enterName.setAttribute('active', String(true));
+
+            this.enterName.setAttribute('active', String(showEnterName));
             this.classList.add(ACTIVE_CLASS);
         } else {
             this.classList.remove(ACTIVE_CLASS);

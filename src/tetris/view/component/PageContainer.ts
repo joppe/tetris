@@ -29,7 +29,7 @@ export class PageContainer extends HTMLElement {
             this.style.display = 'none';
         }
 
-        if (child) {
+        if (child !== undefined) {
             (<HTMLElement>child).setAttribute('active', String(this.isActive));
         }
     }
