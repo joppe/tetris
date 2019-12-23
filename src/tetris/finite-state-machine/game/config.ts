@@ -4,7 +4,7 @@ import { Event } from '@tetris/finite-state-machine/game/Event';
 import { State } from '@tetris/finite-state-machine/game/State';
 
 export const config: States = {
-    initial: State.Play,
+    initial: State.Land,
     states: {
         [State.Land]: {
             on: {

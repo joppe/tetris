@@ -46,7 +46,7 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
-    "@apestaartje/animation": "^2.0.0",
+    "@apestaartje/animation": "^2.0.1",
     "@apestaartje/array": "^1.2.1",
     "@apestaartje/color": "^1.1.0",
     "@apestaartje/dependency-injection": "^3.0.0",

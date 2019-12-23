@@ -15,7 +15,7 @@ import { HighScore } from '@tetris/game/high-score/HighScore';
 @Component({
     selector: 'tetris-high-score-page',
     template: `
-        <h1>Highscore</h1>
+        <h1>High Score</h1>
 
         <table class="c-high-score-table"></table>
 
@@ -60,15 +60,6 @@ export class HighScorePage extends HTMLElement {
             return;
         }
 
-        const options: Intl.DateTimeFormatOptions = {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-        };
-
         // tslint:disable-next-line no-inner-html
         this.table.innerHTML = '';
 
@@ -82,7 +73,6 @@ export class HighScorePage extends HTMLElement {
                 tr.innerHTML = `
                     <td>${String(entry.score)}</td>
                     <td>${String(entry.name)}</td>
-                    <td>@ ${day.toLocaleDateString('en-US', options)}</td>
                 `;
 
                 this.table.append(tr);
