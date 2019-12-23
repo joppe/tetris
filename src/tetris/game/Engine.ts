@@ -24,7 +24,7 @@ export class Engine {
     private readonly _control: Control;
     private readonly _grid: Grid<Type>;
     private readonly _size: Size;
-    private readonly _speed: number = 1000;
+    private readonly _speed: number = 10;
     private readonly _store: Store<Data>;
     private readonly _gameOver: Subject<boolean> = new Subject();
 
@@ -115,11 +115,29 @@ export class Engine {
     }
 
     private seal(): void {
+        const lines: number[] = [];
+
         this._current.data.blocks.forEach((block: Vector): void => {
             this._grid.setCell(block, this._current.type);
+
+            if (this.isFullLine(block.y)) {
+                lines.push(block.y);
+            }
         });
 
+        if (lines.length > 0) {
+            this._store.set('score', <number>this._store.get('score') + (Math.pow(2, lines.length) * 25));
+            this._grid.removeLines(lines);
+        }
+
         this._store.set('cells', this._grid.getCells());
+    }
+
+    private isFullLine(y: number): boolean {
+        return Array.from(this._grid.getLine(y))
+            .every((cell: Cell<string | undefined>): boolean => {
+                return cell.value !== undefined;
+            });
     }
 
     private place(tetromino: Tetromino): boolean {

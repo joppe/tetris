@@ -4,9 +4,7 @@ import { InputType } from '@apestaartje/dom/dist/custom-element/decorator/input/
 
 @Component({
     selector: 'tetris-page-container',
-    template: `
-        <slot></slot>
-    `,
+    template: ``,
 })
 export class PageContainer extends HTMLElement {
     @Input({
@@ -23,10 +21,16 @@ export class PageContainer extends HTMLElement {
     }
 
     private updateVisibility(): void {
+        const child: Element | undefined = this.children[0];
+
         if (this.isActive) {
             this.style.display = 'block';
         } else {
             this.style.display = 'none';
+        }
+
+        if (child !== undefined) {
+            (<HTMLElement>child).setAttribute('active', String(this.isActive));
         }
     }
 }

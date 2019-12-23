@@ -10,11 +10,11 @@ import '@tetris/view/component/CountDown';
 import '@tetris/view/component/GameCanvas';
 import '@tetris/view/component/GameOver';
 import '@tetris/view/component/NavigationLink';
+import '@tetris/view/component/Score';
 // tslint:enable no-import-side-effect
 
 import { config } from '@tetris/finite-state-machine/game/config';
 import { Event as GameEvent } from '@tetris/finite-state-machine/game/Event';
-import { Event as GlobalEvent} from '@tetris/finite-state-machine/global/Event';
 import { State as GameState } from '@tetris/finite-state-machine/game/State';
 
 @Component({
@@ -23,17 +23,16 @@ import { State as GameState } from '@tetris/finite-state-machine/game/State';
         <h1>Game</h1>
 
         <main>
-            <tetris-game-over active="false"></tetris-game-over>
             <tetris-count-down active="false"></tetris-count-down>
             <tetris-game-canvas active="false"></tetris-game-canvas>
         </main>
 
-        <tetris-preview></tetris-preview>
+        <tetris-game-over active="false"></tetris-game-over>
 
-        <nav>
-            <tetris-navigation-link event-name="${GlobalEvent.Home}" title="Home"></tetris-navigation-link>
-            <tetris-navigation-link event-name="${GlobalEvent.HighScore}" title="High Score"></tetris-navigation-link>
-        </nav>
+        <aside>
+            <tetris-preview></tetris-preview>
+            <tetris-score></tetris-score>
+        </aside>
     `,
 })
 export class GamePage extends HTMLElement {

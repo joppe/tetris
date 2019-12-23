@@ -72,7 +72,7 @@ export class Grid<T> {
 
         this._values = [
             ...this._values.slice(0, gapStartIndex),
-            ...this._values.slice(gapEndIndex),
+            ...this._values.slice(gapEndIndex + 1),
         ];
 
         // When a line is removed a new empty one must be added at the top.

@@ -6,6 +6,7 @@ import { Vector } from '@apestaartje/geometry/dist/vector/Vector';
 import { block as renderBlock } from '@tetris/view/canvas/block';
 import { BlockConfig } from '@tetris/store/BlockConfig';
 import { container } from '@tetris/dependency-injection/container';
+import { crop } from '@tetris/tetromino/crop';
 import { Data } from '@tetris/store/Data';
 import { getColor } from '@tetris/view/tetromino/getColor';
 import { TetrominoData } from '@tetris/tetromino/TetrominoData';
@@ -18,15 +19,11 @@ import { TetrominoData } from '@tetris/tetromino/TetrominoData';
 })
 export class Preview extends HTMLElement {
     private _canvas: Canvas;
-    private readonly _store: Store<Data>;
-
-    public constructor() {
-        super();
-
-        this._store = container.resolve<Store<Data>>('store');
-    }
+    private _store: Store<Data>;
 
     public connectedCallback(): void {
+        this._store = container.resolve<Store<Data>>('store');
+
         this.addCanvas();
         this.subscribe();
     }
@@ -42,15 +39,16 @@ export class Preview extends HTMLElement {
         const blockConfig: BlockConfig = this._store.get('block');
         const size: number = blockConfig.size;
 
-        preview.blocks.forEach((block: Vector): void => {
-            renderBlock(
-                this._canvas.context,
-                { x: block.x * size, y: block.y * size },
-                { width: size, height: size },
-                color,
-                blockConfig.line,
-            );
-        });
+        crop(preview.blocks)
+            .forEach((block: Vector): void => {
+                renderBlock(
+                    this._canvas.context,
+                    { x: block.x * size, y: block.y * size },
+                    { width: size, height: size },
+                    color,
+                    blockConfig.line,
+                );
+            });
     }
 
     private addCanvas(): void {

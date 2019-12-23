@@ -1,8 +1,8 @@
 import { Container as DIContainer } from '@apestaartje/dependency-injection/dist/container/Container';
 
-import { factory } from '@apestaartje/dependency-injection/dist/container/factory';
+import { getContainer } from '@apestaartje/dependency-injection/dist/container/getContainer';
 
-const container: DIContainer = factory();
+const container: DIContainer = getContainer();
 
 export {
     container,

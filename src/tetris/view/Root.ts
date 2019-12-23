@@ -1,4 +1,3 @@
-import { ChildElement } from '@apestaartje/dom/dist/custom-element/decorator/child-element/ChildElement';
 import { ChildElements } from '@apestaartje/dom/dist/custom-element/decorator/child-element/ChildElements';
 import { Component } from '@apestaartje/dom/dist/custom-element/decorator/component/Component';
 import { factory as stateFactory } from '@apestaartje/finite-state-machine/dist/machine/factory';
@@ -10,7 +9,7 @@ import '@tetris/view/component/PageContainer';
 import '@tetris/view/component/Preview';
 import '@tetris/view/pages/GamePage';
 import '@tetris/view/pages/HelpPage';
-import '@tetris/view/pages/HighscorePage';
+import '@tetris/view/pages/HighScorePage';
 import '@tetris/view/pages/HomePage';
 // tslint:enable no-import-side-effect
 
@@ -27,13 +26,13 @@ import { State } from '@tetris/finite-state-machine/global/State';
                 <tetris-home-page></tetris-home-page>
             </tetris-page-container>
             <tetris-page-container data-page="${State.Game}" active="${State.Game === config.initial}">
-                <tetris-game-page active="${State.Game === config.initial}"></tetris-game-page>
+                <tetris-game-page></tetris-game-page>
             </tetris-page-container>
             <tetris-page-container data-page="${State.Help}" active="${State.Help === config.initial}">
                 <tetris-help-page></tetris-help-page>
             </tetris-page-container>
             <tetris-page-container data-page="${State.HighScore}" active="${State.HighScore === config.initial}">
-                <tetris-highscore-page></tetris-highscore-page>
+                <tetris-high-score-page></tetris-high-score-page>
             </tetris-page-container>
         </div>
     `,
@@ -41,9 +40,6 @@ import { State } from '@tetris/finite-state-machine/global/State';
 export class Root extends HTMLElement {
     @ChildElements('[data-page]')
     public pages: HTMLElement[];
-
-    @ChildElement('tetris-game-page')
-    public gamePage: HTMLElement;
 
     private _currentState: string = config.initial;
     private readonly _state: Machine;
@@ -78,11 +74,5 @@ export class Root extends HTMLElement {
                 page.setAttribute('active', 'false');
             }
         });
-
-        if (this._currentState === State.Game) {
-            this.gamePage.setAttribute('active', 'true');
-        } else {
-            this.gamePage.setAttribute('active', 'false');
-        }
     }
 }
