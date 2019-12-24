@@ -2,6 +2,7 @@ import { Animator } from '@apestaartje/animation/dist/animator/Animator';
 import { Observable } from '@apestaartje/observable/dist/observable';
 import { Size } from '@apestaartje/geometry/dist/size';
 import { Store } from '@apestaartje/store/dist/Store';
+import { Subject } from '@apestaartje/observable/dist/subject';
 import { Subscription } from '@apestaartje/observable/dist/observable/Subscription';
 import { Vector } from '@apestaartje/geometry/dist/vector';
 
@@ -12,7 +13,6 @@ import { Control } from '@tetris/control/Control';
 import { Data } from '@tetris/store/Data';
 import { Grid } from '@tetris/grid/Grid';
 import { random } from '@tetris/tetromino/random/random';
-import { Subject } from '@apestaartje/observable/dist/subject';
 import { Tetromino } from '@tetris/tetromino/Tetromino';
 import { TetrominoData } from '@tetris/tetromino/TetrominoData';
 import { Type } from '@tetris/tetromino/Type';

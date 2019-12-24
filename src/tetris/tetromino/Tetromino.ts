@@ -6,6 +6,7 @@ import { Vector } from '@apestaartje/geometry/dist/vector/Vector';
 import { getSize } from '@tetris/tetromino/getSize';
 import { TetrominoData } from '@tetris/tetromino/TetrominoData';
 import { Type } from '@tetris/tetromino/Type';
+import { clone } from '@apestaartje/geometry/dist/vector';
 
 const CENTER_OFFSET: number = 0.5;
 
@@ -79,10 +80,12 @@ export class Tetromino {
         );
 
         const blocks: Vector[] = this._blocks.map((block: Vector): Vector => {
-            block.x += CENTER_OFFSET;
-            block.y += CENTER_OFFSET;
+            const copy: Vector = clone(block);
 
-            const transformed: Vector = transform.transformPoint(block);
+            copy.x += CENTER_OFFSET;
+            copy.y += CENTER_OFFSET;
+
+            const transformed: Vector = transform.transformPoint(copy);
 
             transformed.x = Math.round(transformed.x - CENTER_OFFSET);
             transformed.y = Math.round(transformed.y - CENTER_OFFSET);
