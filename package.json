@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "A tetris game",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode production",
     "dev": "webpack-dev-server --port 1234 --content-base public/",
     "lint": "tslint --config ./tslint.json --project tsconfig.json",
     "test": "karma start karma.conf.js",
