@@ -83,12 +83,12 @@ export class Tetromino {
             const copy: Vector = clone(block);
 
             copy.x += CENTER_OFFSET;
-            copy.y += CENTER_OFFSET;
+            copy.y -= CENTER_OFFSET;
 
             const transformed: Vector = transform.transformPoint(copy);
 
             transformed.x = Math.round(transformed.x - CENTER_OFFSET);
-            transformed.y = Math.round(transformed.y - CENTER_OFFSET);
+            transformed.y = Math.round(transformed.y + CENTER_OFFSET);
 
             return transformed;
         });
