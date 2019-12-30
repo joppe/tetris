@@ -1,4 +1,4 @@
-import { random as randomNumber} from '@apestaartje/number/dist/random';
+import { random as randomNumber } from '@apestaartje/number/dist/random';
 
 import { createTypeList } from '@tetris/tetromino/random/createTypeList';
 import { factory } from '@tetris/tetromino/factory/factory';

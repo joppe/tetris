@@ -4,11 +4,14 @@ import { Transform } from '@apestaartje/geometry/dist/transform';
 import { Vector } from '@apestaartje/geometry/dist/vector/Vector';
 
 import { getSize } from '@tetris/tetromino/getSize';
+import { subtract } from '@apestaartje/geometry/dist/vector';
 import { TetrominoData } from '@tetris/tetromino/TetrominoData';
 import { Type } from '@tetris/tetromino/Type';
-import { clone } from '@apestaartje/geometry/dist/vector';
 
-const CENTER_OFFSET: number = 0.5;
+const CENTER_OFFSET: Vector = {
+    x: 0.5,
+    y: 0.5,
+};
 
 export class Tetromino {
     private _position: Vector = { x: 0, y: 0 };
@@ -80,17 +83,11 @@ export class Tetromino {
         );
 
         const blocks: Vector[] = this._blocks.map((block: Vector): Vector => {
-            const copy: Vector = clone(block);
-
-            copy.x += CENTER_OFFSET;
-            copy.y -= CENTER_OFFSET;
-
+            const copy: Vector = add(block, CENTER_OFFSET);
             const transformed: Vector = transform.transformPoint(copy);
+            const repositioned: Vector = subtract(transformed, CENTER_OFFSET);
 
-            transformed.x = Math.round(transformed.x - CENTER_OFFSET);
-            transformed.y = Math.round(transformed.y + CENTER_OFFSET);
-
-            return transformed;
+            return { x: Math.round(repositioned.x), y: Math.round(repositioned.y) };
         });
 
         return new Tetromino(this._type, blocks, this._position, this._size);
