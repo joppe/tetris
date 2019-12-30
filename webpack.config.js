@@ -1,5 +1,5 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 const config = {
@@ -47,6 +47,9 @@ const config = {
                 ]
             }
         ]
+    },
+    optimization: {
+        minimize: false
     },
     resolve: {
         alias: {
